@@ -1,2 +1,4 @@
-# Filmas-Latviski
-Addons priekš Kodi lai var skatīties filmas latviešu valodā
+# Kodi-Latviesiem
+Kolekcija ar addoniem priekš kodi latviešiem. Lai varētu skatīt filmas latviski vai TV
+
+
