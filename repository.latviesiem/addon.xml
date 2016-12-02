@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.latviesiem" name="Kodi Latviesiem Addons" version="1.0.0" provider-name="xcoder123">
+<addon id="repository.latviesiem" name="Kodi Latviesiem Addons" version="1.0.1" provider-name="xcoder123">
 	<extension point="xbmc.addon.repository" name="Kodi Latviesiem Addon Repository">
 		<info compressed="false">https://github.com/xcoder123/KodiLatviesiem/raw/master/addons.xml</info>
 		<checksum>https://github.com/xcoder123/KodiLatviesiem/raw/master/addons.xml.md5</checksum>
