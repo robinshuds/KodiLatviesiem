@@ -1,6 +1,11 @@
 """ addons.xml generator """
 
 import os, md5
+import zipfile
+import shutil
+from xml.dom import minidom
+import glob
+import datetime
 
 class Generator:
     """
@@ -9,9 +14,11 @@ class Generator:
         single depth folder structure.
     """
     def __init__( self ):
+        self.output_path = "repo"
         # generate file
         self._generate_addons_file()
         self._generate_md5_file()
+        #self._generate_zip_files()
         
     def _generate_addons_file( self ):
         # addon list
@@ -67,6 +74,49 @@ class Generator:
                 open( "addons.xml.md5", "w" ).write( m.hexdigest() )
             except Exception, e:
                 print "An error occured saving md5 file\n%s" % ( e, )
+				
+    def _generate_zip_files ( self ):
+        addons = os.listdir( "." )
+        print addons
+        # loop thru and add each addons addon.xml file
+        for addon in addons:
+            # create path
+            _path = os.path.join( addon, "addon.xml" )         
+            #skip path if it has no addon.xml
+            if not os.path.isfile( _path ): continue       
+            try:
+                # skip any file or .git folder
+                if ( not os.path.isdir( addon ) or addon == ".git" or addon == self.output_path): continue
+                # create path
+                _path = os.path.join( addon, "addon.xml" )
+                # split lines for stripping
+                document = minidom.parse(_path)
+                for parent in document.getElementsByTagName("addon"):
+                    version = parent.getAttribute("version")
+                    addonid = parent.getAttribute("id")
+                self._generate_zip_file(addon, version, addonid)
+            except Exception, e:
+                print e
+
+    def _generate_zip_file ( self, path, version, addonid):
+        print "Generate zip file for " + addonid + " " + version
+        filename = path + "-" + version + ".zip"
+        try:
+            zip = zipfile.ZipFile(filename, 'w')
+            for root, dirs, files in os.walk(path + os.path.sep):
+                for file in files:
+                    zip.write(os.path.join(root, file))
+                    
+            zip.close()
+         
+            if not os.path.exists(self.output_path + addonid):
+                os.makedirs(self.output_path + addonid)
+         
+            if os.path.isfile(self.output_path + addonid + os.path.sep + filename):
+                os.rename(self.output_path + addonid + os.path.sep + filename, self.output_path + addonid + os.path.sep + filename + "." + datetime.datetime.now().strftime("%Y%m%d%H%M%S") )
+            shutil.move(filename, self.output_path + addonid + os.path.sep + filename)
+        except Exception, e:
+            print e
 
 if ( __name__ == "__main__" ):
     # start
