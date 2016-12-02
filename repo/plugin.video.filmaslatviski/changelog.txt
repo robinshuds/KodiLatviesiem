@@ -1,0 +1,5 @@
+[B]0.0.2[/B]
+- Tagad pieejama filmu meklēšana
+
+[B]0.0.1[/B]
+- Initial version
