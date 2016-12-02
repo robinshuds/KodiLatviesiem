@@ -11,7 +11,80 @@ import requests
 
 mainURL = 'https://cinemalive.tv'
 
+def showkeyboard(txtMessage="",txtHeader="",passwordField=False):
+    if txtMessage=='None': txtMessage=''
+    keyboard = xbmc.Keyboard(txtMessage, txtHeader, passwordField)#("text to show","header text", True="password field"/False="show text")
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        return keyboard.getText()
+    else:
+        return False # return ''
 		
+def Search():
+	text = showkeyboard('', u'Meklēt filmu')
+	print "Search string: " + text
+	post_fields = {'search': text}
+	html = postHTML("https://cinemalive.tv/scripts/search.php", post_fields)
+	
+	print html
+	# found_items = common.parseDOM(html, "div", attrs = { "style": "height:78px" })
+	found_links = common.parseDOM(html, "a", ret = "href")
+	found_name = common.parseDOM(html, "span", attrs = { "style": "color:#bcbcbc" })
+	found_image = common.parseDOM(html, "img", ret = "src")
+	print found_links
+	print found_name
+	print found_image
+	
+	for i in range(0, len(found_links)):
+		addDir(found_name[i].encode('utf-8'), found_links[i], 'state_play', found_image[i].replace(mainURL, "").replace('xs.jpg', 'md.jpg') )
+		
+def postHTML(url, post_fields):
+
+	if sys.hexversion >= 0x02070BF0:
+		r = requests.post(url, data=post_fields)
+		print(r.status_code, r.reason)
+		html = r.text.encode('utf-8')
+	else:
+		print "Crap we have the old version"
+		
+		# hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+		# 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		# 'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+		# 'Accept-Encoding': 'none',
+		# 'Accept-Language': 'pl-PL,pl;q=0.8',
+		# 'Connection': 'keep-alive'}
+		
+		# http://dev.morf.lv/mirror.php?url=https://cinemalive.tv/scripts/search.php&post=
+		postParam = ""
+		for key, value in post_fields.iteritems():
+			postParam+=key+":"+value
+			
+		# req = urllib2.Request("http://dev.morf.lv/mirror.php?url="+url+"&post="+postParam, headers=hdr)
+		
+		# try:
+			# page = urllib2.urlopen(req)
+		# except urllib2.HTTPError, e:
+			# print e.fp.read()
+		
+		# html = page.read()
+		# print html
+		
+		r = requests.get("http://dev.morf.lv/mirror.php?url="+url+"&post="+postParam)
+		print(r.status_code, r.reason)
+		html = r.text.encode('utf-8')
+		
+	
+	#Let's just itterate through stupid encoding/decodings
+	try:
+		html = html.decode('utf-8').encode('utf-8')
+	except:		
+		html = html.decode('latin-1').encode('utf-8')
+		
+	# test = html.encode('latin1').decode('utf8')
+	# print test
+	
+	return html
+	
 def getHTML(url, data = False):	   
 	print "Downloading URL..."
 	
@@ -228,6 +301,8 @@ elif mode == 'state_movies':
 	Movies(url, page)
 elif mode == 'state_play':
 	PlayMovie(url, title, picture)
+elif mode == 'state_search':
+	Search()
 
 		
 

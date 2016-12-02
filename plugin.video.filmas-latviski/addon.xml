@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.filmas-latviski" version="0.0.1" name="Filmas-Latviski" provider-name="xcoder123">
+<addon id="plugin.video.filmas-latviski" version="0.0.2" name="Filmas-Latviski" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.urlresolver" version="3.0.24" />
@@ -15,7 +15,7 @@
 		<description lang="en">Skaties filmas latviešu valodā</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<source>https://github.com/xcoder123/Filmas-Latviski</source>
+		<source>https://github.com/xcoder123/Kodi-Latviesiem</source>
 		<news></news>
 	</extension>
 </addon>
