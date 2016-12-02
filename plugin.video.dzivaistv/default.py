@@ -155,12 +155,13 @@ def isVideoFormat(needle):
     return needle in haystack
 	
 def HomeNavigation():
-	url = 'https://cinemalive.tv/filmaslatviski'
-	html = getHTML(url)
+	# url = 'https://cinemalive.tv/filmaslatviski'
+	# html = getHTML(url)
 	# print 'html: ' + html
-	nav_links_list = common.parseDOM(html, "div", attrs = { "id": "genre-nav" })
-	nav_links = common.parseDOM(nav_links_list, "a", ret = "href")
-	nav_links_name = common.parseDOM(nav_links_list, "a")
+	# nav_links_list = common.parseDOM(html, "div", attrs = { "id": "genre-nav" })
+	# nav_links = common.parseDOM(nav_links_list, "a", ret = "href")
+	# nav_links_name = common.parseDOM(nav_links_list, "a")
+	addDir('TV3 Latvija', '', 'state_tv3', None)
 	addDir('Meklēt', '', 'state_search', None)
 		
 	# pagirasList = u'https://openload.co/embed/pbQKtANhUNI/'	
@@ -169,10 +170,10 @@ def HomeNavigation():
 	# addLink("Paģiras 2", link.encode('utf-8'), None)
 	# print nav_links
 	# print nav_links_name
-	for i in range(0, len(nav_links)):
-		if isLinkUseful(nav_links[i]):
+	# for i in range(0, len(nav_links)):
+		# if isLinkUseful(nav_links[i]):
 			# print mainURL + nav_links[i]
-			addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', None)
+			# addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', None)
 			
 def Movies(url, page=1):
 	html = getHTML(url+"/lapa/"+str(page))
@@ -246,6 +247,16 @@ def addLink(title, url, picture):
     item.setInfo( type='Video', infoLabels={'Title': title} )	
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=item)
 	
+def play_stream(url):
+	media_url = url
+	print "MEDIA URL " + media_url
+	item = xbmcgui.ListItem('TV3 Latvia', path = media_url)
+	# xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+	# xbmcplugin.setResolvedUrl( handle=int( sys.argv[1]), succeeded=False, listitem=item )
+	listItem = xbmcgui.ListItem("Tesfilm", path=media_url)
+	xbmc.Player().play(item=media_url, listitem=listItem)
+	return
+	
 def get_params():
     param=[]
     paramstring=sys.argv[2]
@@ -303,6 +314,12 @@ elif mode == 'state_play':
 	PlayMovie(url, title, picture)
 elif mode == 'state_search':
 	Search()
+elif mode == 'state_tv3':
+	url = 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_medium.stream/chunklist.m3u8'
+	# url = "C:\Users\Raivis\Downloads\chunklist (3).m3u8"
+	playlistFile = getHTML('http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_high.stream/chunklist.m3u8')
+	play_stream(url)
+	# print playlistFile
 
 		
 
