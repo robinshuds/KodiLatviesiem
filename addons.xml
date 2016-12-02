@@ -21,14 +21,14 @@
 	</extension>
 </addon>
 
-<addon id="repository.kodi-latviesiem" name="Kodi-Latviesiem Addons" version="1.0.1" provider-name="xcoder123">
-	<extension point="xbmc.addon.repository" name="Kodi-Latviesiem Addon Repository">
-		<info compressed="false">https://github.com/xcoder123/kodi-latviesiem/raw/master/addons.xml</info>
-		<checksum>https://github.com/xcoder123/kodi-latviesiem/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/xcoder123/kodi-latviesiem/raw/master/repo/<datadir>
+<addon id="repository.kodilatviesiem" name="Kodi Latviesiem Addons" version="1.0.1" provider-name="xcoder123">
+	<extension point="xbmc.addon.repository" name="Kodi Latviesiem Addon Repository">
+		<info compressed="false">https://github.com/xcoder123/kodilatviesiem/raw/master/addons.xml</info>
+		<checksum>https://github.com/xcoder123/kodilatviesiem/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/xcoder123/kodilatviesiem/raw/master/repo/<datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install Kodi-Latvisiem Addons</summary>
+		<summary>Install Kodi Latviešiem Addons</summary>
 		<description>Lejupielādē un instalē addonus lai skatītu latvijas TV vai filmas latviešu valodā</description>
 		<platform>all</platform>
 	</extension>
