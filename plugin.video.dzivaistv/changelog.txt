@@ -1,2 +1,5 @@
-﻿[B]0.0.1[/B]
+﻿[B]1.0.0[/B]
+- Pirmā versija kodam. Izstrādāta datu struktūra un pievienoti pirmie 5 testa kanāli.
+
+[B]0.0.1[/B]
 - Initial version
