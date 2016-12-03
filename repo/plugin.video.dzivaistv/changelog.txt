@@ -1,4 +1,9 @@
-﻿[B]1.0.0[/B]
+﻿[B]1.1.0[/B]
+- Pievienots: Kanāls 2, PBMK
+- Pievienota kategorija testa strīmi, eksperimentāliem strīmiem
+- Pievienoti papildus strīmi Tv3, tv6 un lnt
+
+[B]1.0.0[/B]
 - Pirmā versija kodam. Izstrādāta datu struktūra un pievienoti pirmie 5 testa kanāli.
 
 [B]0.0.1[/B]

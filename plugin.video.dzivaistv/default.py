@@ -16,23 +16,43 @@ channelList = {'Latvijas Kanāli': {
 									'icon': '%s/Latvia.png',
 									'channels':	[{'name': 'LTV1',
 												'thumb': '%s/ltv1.png',
-												'sources': ['resolve_ltv1_source1']
+												'sources': [{'name':'LTV1 - Tiešraide 1', 'url': 'resolve_ltv1_source1'}]
 												},
 												{'name': 'LTV7',
 												'thumb': '%s/ltv7.png',
-												'sources': ['resolve_ltv7_source1']
+												'sources': [{'name': 'LTV7 - Tiešraide 1', 'url': 'resolve_ltv7_source1'}]
 												},
 												{'name': 'TV3 Latvija',
 												'thumb': '%s/tv3.png',
-												'sources': ['http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_medium.stream/chunklist.m3u8']
+												'sources': [{'name': 'TV3 Latvija - High', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_high.stream/chunklist.m3u8'},
+															{'name': 'TV3 Latvija - Medium', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_medium.stream/chunklist.m3u8'},
+															{'name': 'TV3 Latvija - Low', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_low.stream/chunklist.m3u8'}]
 												},
 												{'name': 'LNT',
 												'thumb': '%s/lnt.png',
-												'sources': ['http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_medium.stream/playlist.m3u8']
+												'sources': [{'name': 'LNT - High', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_high.stream/playlist.m3u8'},
+															{'name': 'LNT - Medium', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_medium.stream/playlist.m3u8'},
+															{'name': 'LNT - Low', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_low.stream/playlist.m3u8'}]
 												},
 												{'name': 'TV6 Latvija',
 												'thumb': '%s/tv6.png',
-												'sources': ['http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_medium.stream/playlist.m3u8']
+												'sources': [{'name': 'TV6 Latvija - High', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_high.stream/playlist.m3u8'},
+															{'name': 'TV6 Latvija - Medium', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_medium.stream/playlist.m3u8'},
+															{'name': 'TV6 Latvija - Low', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_low.stream/playlist.m3u8'}]
+												},
+												{'name': 'Kanāls 2',
+												'thumb': '%s/kanals2.png',
+												'sources': [{'name': 'Kanāls 2 - High', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_high.stream/playlist.m3u8'},
+															{'name': 'Kanāls 2 - Medium', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_medium.stream/playlist.m3u8'},
+															{'name': 'Kanāls 2 - Low', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_low.stream/playlist.m3u8'}]
+												},
+												{'name': 'PBMK',
+												'thumb': '%s/pbmk.png',
+												'sources': [{'name': 'Первый Балтийский Музыкальный', 'url': 'https://streamer4.tvdom.tv/PBMK/tracks-v1a1/index.m3u8?token=token1'}]
+												},
+												{'name': 'Testa Strīmi',
+												'thumb': '%s/test.png',
+												'sources': [{'name': 'Viasat Sport Baltic', 'url': 'http://cdn.smotrimult.com/hls/oU4Z3FCVitlJ1yRDK2InXQ/1480787415/sportbaltic.m3u8'}]
 												}]
 								  }
 			  }
@@ -86,7 +106,7 @@ def postHTML(url, post_fields):
 	return html
 	
 def getHTML(url, data = False):	   
-	print "Downloading URL..."
+	print "Downloading URL... " + url
 	
 	hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
 		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -109,6 +129,7 @@ def getHTML(url, data = False):
 			page = urllib2.urlopen(req,context=context)
 		except urllib2.HTTPError, e:
 			print "ERROR while downloading: " + e.fp.read()
+			return
 
 		html = page.read()
 	else:
@@ -120,6 +141,7 @@ def getHTML(url, data = False):
 			page = urllib2.urlopen(req)
 		except urllib2.HTTPError, e:
 			print e.fp.read()
+			return
 
 		html = page.read()
 		
@@ -177,6 +199,8 @@ def isURL(url):
 		return True
 	except ValueError:  # invalid URL
 		return False
+	except:
+		return True
 		 
 def HomeNavigation():
 	categories = get_categories()
@@ -198,13 +222,13 @@ def Sources(url):
 	sources = get_sources(category, channel)
 	
 	for i in range(0, len(sources)):
-		print isURL(sources[i]), sources[i]
-		if isURL(sources[i]) == False:
-			resolvedUrl = globals()[sources[i]]()
+		print isURL(sources[i]['url']), sources[i]
+		if isURL(sources[i]['url']) == False:
+			resolvedUrl = globals()[sources[i]['url']]()
 			if resolvedUrl != False:
-				addLink(u"Tiešraide %s"% (i+1), resolvedUrl, None)
+				addLink(sources[i]['name'], resolvedUrl, None)
 		else:
-			addLink(u"Tiešraide %s"% (i+1), sources[i], None)
+			addLink(sources[i]['name'], sources[i]['url'], None)
 			
 	
 	
