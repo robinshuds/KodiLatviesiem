@@ -54,6 +54,25 @@ channelList = {'Latvijas Kanāli': {
 												'thumb': '%s/test.png',
 												'sources': [{'name': 'Viasat Sport Baltic', 'url': 'http://cdn.smotrimult.com/hls/oU4Z3FCVitlJ1yRDK2InXQ/1480787415/sportbaltic.m3u8'}]
 												}]
+								  },
+			  'Populārzinātniskie Kanāli': {
+									'icon': '%s/popsci.png',
+									'channels':	[{'name': 'Discovery Channel',
+												'thumb': '%s/discoverychannel.png',
+												'sources': [{'name':'Discovery Channel - Tiešraide 1', 'url': 'resolve_discoverychannel_source1'}]
+												},
+												{'name': 'Discovery Channel HD Showcase',
+												'thumb': '%s/discoverychannelhd.png',
+												'sources': [{'name':'Discovery Channel HD Showcase - Tiešraide 1', 'url': 'resolve_discoverychannelhd_source1'}]
+												},
+												{'name': 'NASA TV',
+												'thumb': '%s/nasatv.png',
+												'sources': [{'name':'NASA TV - Tiešraide 1', 'url': 'http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8'}]
+												},												
+												{'name': 'Viasat Explorer',
+												'thumb': '%s/viasatexplorer.png',
+												'sources': [{'name':'Viasat Explorer - [RUS] Tiešraide 1', 'url': 'http://178.124.183.19/hls/CH_VIASATEXPLORER/variant.m3u8?'}]
+												}]
 								  }
 			  }
 							  
@@ -176,6 +195,116 @@ def resolve_ltv7_source1():
 		return resolvedUrl
 	else:
 	   return False
+	  
+
+def resolve_discoverychannelhd_source1():
+	hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+		'Accept-Encoding': 'none',
+		'Accept-Language': 'pl-PL,pl;q=0.8',
+		'Connection': 'keep-alive'}
+		
+	req = urllib2.Request('http://www.tikilive.com/embed?scheme=embedChannel&channelId=41598&autoplay=yes&showChat=no', headers=hdr)
+
+	try:
+		page = urllib2.urlopen(req)
+	except urllib2.HTTPError, e:
+		print "ERROR while downloading: " + e.fp.read()
+		return
+
+	html = page.read()
+	# html = getHTML()
+	print html
+	#resolve channelId
+	searchObj = re.search("hlsCdnMoChannelId: '\d*'", html)
+	if searchObj:
+		channelId = searchObj.group().replace("hlsCdnMoChannelId: '", '')
+		channelId = channelId[:-1]		
+	else:
+	   return False
+	   
+	#resolve start time
+	searchObj = re.search("hlsCdnMoStime: '\d*'", html)
+	if searchObj:
+		hlsCdnMoStime = searchObj.group().replace("hlsCdnMoStime: '", '')
+		hlsCdnMoStime = hlsCdnMoStime[:-1]		
+	else:
+	   return False
+	   
+	   
+	#resolve end time
+	searchObj = re.search("hlsCdnMoEtime: '\d*'", html)
+	if searchObj:
+		hlsCdnMoEtime = searchObj.group().replace("hlsCdnMoEtime: '", '')
+		hlsCdnMoEtime = hlsCdnMoEtime[:-1]		
+	else:
+	   return False
+	   
+	#resolve token id
+	searchObj = re.search("hlsCdnMoToken: '[\d\w]*'", html)
+	if searchObj:
+		hlsCdnMoToken = searchObj.group().replace("hlsCdnMoToken: '", '')
+		hlsCdnMoToken = hlsCdnMoToken[:-1]		
+	else:
+	   return False
+   
+	return "http://tv-tikilive-live.hls.adaptive.level3.net/show_demotiki/405/amlst:mainstream/playlist.m3u8?op_id=19&userId=0&channelId="+channelId+"&stime="+hlsCdnMoStime+"&etime="+hlsCdnMoEtime+"&token="+hlsCdnMoToken
+	
+def resolve_discoverychannel_source1():
+	hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+		'Accept-Encoding': 'none',
+		'Accept-Language': 'pl-PL,pl;q=0.8',
+		'Connection': 'keep-alive'}
+		
+	req = urllib2.Request('http://www.tikilive.com/embed?scheme=embedChannel&channelId=40686&autoplay=yes&showChat=no', headers=hdr)
+
+	try:
+		page = urllib2.urlopen(req)
+	except urllib2.HTTPError, e:
+		print "ERROR while downloading: " + e.fp.read()
+		return
+
+	html = page.read()
+	# html = getHTML()
+	print html
+	#resolve channelId
+	searchObj = re.search("hlsCdnMoChannelId: '\d*'", html)
+	if searchObj:
+		channelId = searchObj.group().replace("hlsCdnMoChannelId: '", '')
+		channelId = channelId[:-1]		
+	else:
+	   return False
+	   
+	#resolve start time
+	searchObj = re.search("hlsCdnMoStime: '\d*'", html)
+	if searchObj:
+		hlsCdnMoStime = searchObj.group().replace("hlsCdnMoStime: '", '')
+		hlsCdnMoStime = hlsCdnMoStime[:-1]		
+	else:
+	   return False
+	   
+	   
+	#resolve end time
+	searchObj = re.search("hlsCdnMoEtime: '\d*'", html)
+	if searchObj:
+		hlsCdnMoEtime = searchObj.group().replace("hlsCdnMoEtime: '", '')
+		hlsCdnMoEtime = hlsCdnMoEtime[:-1]		
+	else:
+	   return False
+	   
+	#resolve token id
+	searchObj = re.search("hlsCdnMoToken: '[\d\w]*'", html)
+	if searchObj:
+		hlsCdnMoToken = searchObj.group().replace("hlsCdnMoToken: '", '')
+		hlsCdnMoToken = hlsCdnMoToken[:-1]		
+	else:
+	   return False
+   
+	return "http://tv-tikilive-live.hls.adaptive.level3.net/show_demotiki/11/amlst:mainstream/playlist.m3u8?op_id=19&userId=0&channelId="+channelId+"&stime="+hlsCdnMoStime+"&etime="+hlsCdnMoEtime+"&token="+hlsCdnMoToken
+	
 	
 
 def get_categories():

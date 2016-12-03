@@ -1,4 +1,7 @@
-﻿[B]1.1.0[/B]
+﻿[B]1.2.0[/B]
+- Pievienoju dažus populārzinātniskus kanālus
+
+[B]1.1.0[/B]
 - Pievienots: Kanāls 2, PBMK
 - Pievienota kategorija testa strīmi, eksperimentāliem strīmiem
 - Pievienoti papildus strīmi Tv3, tv6 un lnt
