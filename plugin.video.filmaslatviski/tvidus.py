@@ -38,13 +38,17 @@ def Search():
 	
 	
 	for i in range(0, len(moviesURLs)):
-		rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
-		rawImage.decode_content = True	
-		localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].replace('//tvid.us/uploads/movies/', '') )
-		temp = open( localFile, mode='wb')
-		shutil.copyfileobj(rawImage.raw, temp)
-		temp.close()
-		print localFile
+		localFile = None
+		try:
+			rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
+			rawImage.decode_content = True	
+			localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].split("/")[-1] )
+			temp = open( localFile, mode='wb')
+			shutil.copyfileobj(rawImage.raw, temp)
+			temp.close()
+			print localFile
+		except:
+			pass
 		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', localFile, source_id=mySourceId)
 		
 	if len(moviesURLs) >= 27:
@@ -52,7 +56,7 @@ def Search():
 		
 		
 def HomeNavigation():
-	print "Opening CinemaLive.tv"
+	print "Opening tvid.us"
 	# url = 'http://tvid.us/movies'
 	# html = network.getHTML(url)
 	scraper = cfscrape.create_scraper()  # returns a CloudflareScraper instance	
