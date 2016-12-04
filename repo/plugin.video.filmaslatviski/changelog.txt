@@ -1,4 +1,7 @@
-﻿[B]1.0.2[/B]
+﻿[B]1.0.3[/B]
+- Sataisīju kad cenšas kodēt strīma URL, tagad arī mākam dekodēt
+
+[B]1.0.2[/B]
 - Mazs uzlabojums meklēšanai
 
 [B]1.0.1[/B]

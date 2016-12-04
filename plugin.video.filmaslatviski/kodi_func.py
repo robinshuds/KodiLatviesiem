@@ -21,7 +21,7 @@ def isLinkUseful(needle):
     return needle not in haystack
 	
 def isVideoFormat(needle):
-    haystack = ['mp4', 'avi', 'mp4?mime=true']
+    haystack = ['mp4', 'avi', 'mp4?mime=true', 'm3u8', 'mov']
     return needle in haystack
 	
 def addDir(title, url, mode, picture, page=None, source_id=None):

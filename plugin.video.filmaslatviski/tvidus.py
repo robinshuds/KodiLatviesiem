@@ -4,6 +4,7 @@ import sys
 import xbmc
 import xbmcgui
 import xbmcplugin
+import re
 import urlresolver
 import CommonFunctions
 import kodi_func
@@ -11,6 +12,7 @@ import cfscrape
 import requests
 import tempfile
 import shutil
+import base64
 
 common = CommonFunctions
 common.plugin = "Filmas-Latviski-1.0.0"
@@ -123,10 +125,23 @@ def PlayMovie(url, title, picture):
 	print videoContainer
 	print title.decode('latin-1').encode('utf-8')
 	
+	#aha it's not the standard openload.co video
+	print len(videoContainer)
+	if len(videoContainer) == 0:
+		searchObj = re.search('file: atob\("[\w\d=.,]*"\)', html)
+		if searchObj:
+			resolvedUrl = searchObj.group().replace('file: atob("', '')
+			resolvedUrl = resolvedUrl[:-2]	
+			videoContainer = [base64.b64decode(resolvedUrl)]
+			print resolvedUrl, videoContainer
+		else:
+		   print "Well couldn't decode url"
+		
+	
 	link = urlresolver.resolve(videoContainer[0])
 	if link != False:
 		kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Latviski", link.encode('utf-8'), picture)	
 	elif kodi_func.isVideoFormat(videoContainer[0].split(".")[-1]):
 		kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Latviski", videoContainer[0], picture)	
-	print "LINKS: " + link
+	print "LINKS: " + str(link)
 	# link = re.compile('file:[\s\t]*"(.+?)"').findall(html.decode('windows-1251').encode('utf-8'))[0]
