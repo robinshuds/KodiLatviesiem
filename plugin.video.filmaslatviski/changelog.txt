@@ -1,3 +1,6 @@
+[B]1.0.1[/B]
+- Sataisīta nepareiza kategorijas nolasīšana tvidus avotam un exception metodē tiek lejupielādēti thumbnaili lai nepakaras
+
 [B]1.0.0[/B]
 - Pievienota iespēja izvēlēties vairākus avotus. Pašreiz pieejami cinemalive un vidtvus avoti
 
