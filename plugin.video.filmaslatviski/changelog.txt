@@ -1,3 +1,6 @@
+[B]1.0.0[/B]
+- Pievienota iespēja izvēlēties vairākus avotus. Pašreiz pieejami cinemalive un vidtvus avoti
+
 [B]0.0.2[/B]
 - Tagad pieejama filmu meklēšana
 

@@ -7,7 +7,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
-import urlresolver
+# import urlresolver
 import urllib, urllib2, ssl, re
 import CommonFunctions
 import requests

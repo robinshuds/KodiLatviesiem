@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dzivaistv" version="1.2.0" name="Dzīvais TV" provider-name="xcoder123">
+<addon id="plugin.video.dzivaistv" version="1.2.1" name="Dzīvais TV" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.urlresolver" version="3.0.24" />
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.module.parsedom" version="0.9.1"/>
 		<import addon="script.module.requests" version="2.7.0"/>
@@ -13,7 +12,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Dzīvais TV</summary>
-		<description lang="en">Skaties dzīvo TV latviešu valodā un citās. Lūdzu ja ir iespējams atbalstat http://tvid.us/, tikai dēļ viņiem šis ir iespējams</description>
+		<description lang="en">Skaties dzīvo TV latviešu valodā un citās.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
 		<source>https://github.com/xcoder123/KodiLatviesiem</source>
@@ -21,7 +20,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.filmaslatviski" version="0.0.2" name="Filmas Latviski" provider-name="xcoder123">
+<addon id="plugin.video.filmaslatviski" version="1.0.0" name="Filmas Latviski" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.urlresolver" version="3.0.24" />
