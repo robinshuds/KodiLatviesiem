@@ -73,12 +73,12 @@ def HomeNavigation():
 	for i in range(0, len(nav_links)):
 		if kodi_func.isLinkUseful(nav_links[i]):
 			# print mainURL + nav_links[i]
-			kodi_func.addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', None, source_id=mySourceId)
+			kodi_func.addDir(nav_links_name[i].encode('utf-8'), 'http:' + nav_links[i], 'state_movies', None, source_id=mySourceId)
 			
 def Movies(url, page=1):
 	session = requests.session()
 	scraper = cfscrape.create_scraper(sess=session)
-	html = scraper.get("http://tvid.us/movies/page/"+str(page)).content
+	html = scraper.get(url+"/page/"+str(page)).content
 	# print "html" + html
 	moviesList = common.parseDOM(html, "div", attrs = { "class": "modal-content" })
 	moviesTitleList = common.parseDOM(moviesList, "h4")
@@ -89,13 +89,17 @@ def Movies(url, page=1):
 	
 	
 	for i in range(0, len(moviesURLs)):
-		rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
-		rawImage.decode_content = True	
-		localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].replace('//tvid.us/uploads/movies/', '') )
-		temp = open( localFile, mode='wb')
-		shutil.copyfileobj(rawImage.raw, temp)
-		temp.close()
-		print localFile
+		localFile = None
+		try:
+			rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
+			rawImage.decode_content = True	
+			localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].split("/")[-1] )
+			temp = open( localFile, mode='wb')
+			shutil.copyfileobj(rawImage.raw, temp)
+			temp.close()
+			print localFile
+		except:
+			pass
 		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', localFile, source_id=mySourceId)
 		
 	if len(moviesURLs) >= 27:
