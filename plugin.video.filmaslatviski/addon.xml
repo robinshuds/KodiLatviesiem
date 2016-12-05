@@ -5,7 +5,7 @@
 		<import addon="script.module.urlresolver" version="3.0.25" />
 		<import addon="script.module.metahandler" version="2.9.0" />
 		<import addon="script.module.parsedom" version="2.5.2"/>
-		<import addon="script.module.requests" version="2.14.0"/>
+		<import addon="script.module.requests" version="2.9.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="filmas-latviski.py">
 		<provides>video</provides>
