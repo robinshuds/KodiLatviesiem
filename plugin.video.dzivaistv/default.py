@@ -16,11 +16,11 @@ channelList = {'Latvijas Kanāli': {
 									'icon': '%s/Latvia.png',
 									'channels':	[{'name': 'LTV1',
 												'thumb': '%s/ltv1.png',
-												'sources': [{'name':'LTV1 - Tiešraide 1', 'url': 'resolve_ltv1_source1'}]
+												'sources': [{'name':'LTV1 - Tiešraide 1 [COLOR red][Ārzemes Neies][/COLOR]', 'url': 'resolve_ltv1_source1'}]
 												},
 												{'name': 'LTV7',
 												'thumb': '%s/ltv7.png',
-												'sources': [{'name': 'LTV7 - Tiešraide 1', 'url': 'resolve_ltv7_source1'}]
+												'sources': [{'name': 'LTV7 - Tiešraide 1 [COLOR red][Ārzemes Neies][/COLOR]', 'url': 'resolve_ltv7_source1'}]
 												},
 												{'name': 'TV3 Latvija',
 												'thumb': '%s/tv3.png',
@@ -322,6 +322,15 @@ def get_sources(category, channel):
 			
 	return
 	
+def get_channel_icon(category, channel):
+	channels = channelList[category]['channels']
+	
+	for ch in channels:
+		if ch['name'] == channel:
+			return ch['thumb']
+			
+	return
+	
 def isURL(url):
 	try:
 		f = urllib2.urlopen(url)
@@ -355,9 +364,9 @@ def Sources(url):
 		if isURL(sources[i]['url']) == False:
 			resolvedUrl = globals()[sources[i]['url']]()
 			if resolvedUrl != False:
-				addLink(sources[i]['name'], resolvedUrl, None)
+				addLink(sources[i]['name'], resolvedUrl, get_channel_icon(category, channel)% iconpath)
 		else:
-			addLink(sources[i]['name'], sources[i]['url'], None)
+			addLink(sources[i]['name'], sources[i]['url'], get_channel_icon(category, channel)% iconpath)
 			
 	
 	
@@ -379,7 +388,7 @@ def addLink(title, url, picture):
     if  picture == None:
         item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage='')
     else:
-		item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage=mainURL + picture)
+		item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage=picture)
     item.setInfo( type='Video', infoLabels={'Title': title} )	
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=item)
 	

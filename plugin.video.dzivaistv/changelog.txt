@@ -1,4 +1,12 @@
-﻿[B]1.2.2[/B]
+﻿[B]1.2.4[/B]
+- TV Logo, tagad arī parādās ka tiek palaists strīms
+- Pievienoju sarkanu tekstu pie strīmiem kurus zinam ka neiet ārzemēs.
+
+
+[B]1.2.3[/B]
+- Atjaunoju nepieiciešamo moduļu versiju numurus
+
+[B]1.2.2[/B]
 - Atjaunoju nepieiciešamo moduļu versiju numurus
 
 [B]1.2.1[/B]
