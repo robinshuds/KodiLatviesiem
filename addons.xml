@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dzivaistv" version="1.2.2" name="Dzīvais TV" provider-name="xcoder123">
+<addon id="plugin.video.dzivaistv" version="1.2.3" name="Dzīvais TV" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.metahandler" version="2.9.0" />
-		<import addon="script.module.parsedom" version="2.5.2"/>
-		<import addon="script.module.requests" version="2.14.0"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.parsedom" version="0.9.1"/>
+		<import addon="script.module.requests" version="2.9.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -20,13 +20,13 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.filmaslatviski" version="1.0.4" name="Filmas Latviski" provider-name="xcoder123">
+<addon id="plugin.video.filmaslatviski" version="1.0.5" name="Filmas Latviski" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.urlresolver" version="3.0.25" />
-		<import addon="script.module.metahandler" version="2.9.0" />
-		<import addon="script.module.parsedom" version="2.5.2"/>
-		<import addon="script.module.requests" version="2.14.0"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.parsedom" version="0.9.1"/>
+		<import addon="script.module.requests" version="2.9.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="filmas-latviski.py">
 		<provides>video</provides>
