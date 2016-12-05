@@ -24,8 +24,48 @@ mySourceId = 2
 
 mainURL = 'http://tvid.us/movies'
 
-def Search():
-	text = kodi_func.showkeyboard('', u'Meklēt filmu')
+def SearchRaw(searchStr):
+	result = []
+	
+	session = requests.session()
+	scraper = cfscrape.create_scraper(sess=session)
+	html = scraper.get("http://tvid.us/movies/search/"+str(searchStr)).content
+	moviesList = common.parseDOM(html, "div", attrs = { "class": "modal-content" })
+	moviesTitleList = common.parseDOM(moviesList, "h4")
+	moviesThumbnailURLsList = common.parseDOM(moviesList, "img", attrs = { "class": "img-responsive" }, ret = "src")
+	moviesURLs = common.parseDOM(moviesList, "a", ret = "href", attrs = { "class": "btn btn-primary" })
+	# print moviesThumbnailURLsList
+	print moviesURLs, len(moviesURLs)
+	
+	
+	for i in range(0, len(moviesURLs)):
+		localFile = None
+		try:
+			rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
+			rawImage.decode_content = True	
+			localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].split("/")[-1] )
+			temp = open( localFile, mode='wb')
+			shutil.copyfileobj(rawImage.raw, temp)
+			temp.close()
+			print localFile
+		except:
+			pass
+			
+		result.append({
+			'title': moviesTitleList[i].encode('utf-8'),
+			'url': moviesURLs[i],
+			'thumb': localFile,
+			'source_id': mySourceId
+		})	
+	
+	return result
+		
+	
+def Search(searchStr = None):
+	if searchStr == None:
+		text = kodi_func.showkeyboard('', u'Meklēt filmu')
+	else:
+		text = searchStr
 	print "Search string: " + text
 	
 	session = requests.session()

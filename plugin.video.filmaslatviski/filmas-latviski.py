@@ -28,20 +28,49 @@ iconpath = xbmc.translatePath(os.path.join(home, 'resources/icons/'))
 
 sourceObjects = [{
 					'source_id': 1,
-					'name': 'CinemaLive.tv (1600+ filmas)', 
+					'name': 'CinemaLive.tv', 
+					'description': '(1600+ filmas)',
 					'icon': '%s/cinemalive.png', 
 					'object': cinemalive
 				},
 				{
 					'source_id': 2,
-					'name': 'tvid.us (800+ filmas)', 
+					'name': 'tvid.us', 
+					'description': '(800+ filmas)',
 					'icon': '%s/tvidus.png', 
 					'object': tvidus
 				}]
 				
+def SearchAllSources():
+	searchStr = kodi_func.showkeyboard('', u'Meklēt filmas')
+	if not searchStr:
+		return
+	results = []
+	
+	progress_dialog = xbmcgui.DialogProgress()
+	progress_dialog.create("Meklējam filmas")
+
+	for i in range(len(sourceObjects)):
+		source = sourceObjects[i]
+		progress = int(float((float(i)/len(sourceObjects))*100))
+		# print "Progress: " + str(progress) + " " + str(i) + " " + str( float(1.0/2.0) )
+		progress_dialog.update( progress , "Lūdzu uzgaidi...", "Meklējam avotā: " + source['name'], "Atlikuši avoti: " + str(len(sourceObjects) - i) )
+		if (progress_dialog.iscanceled()): break
+		sourceResult = source['object'].SearchRaw(searchStr)		
+		if len(sourceResult) > 0:
+			kodi_func.addDir(source['name']+" | "+str(len(sourceResult)) +" rezultāti", searchStr, 'state_search_directly', source['icon']% iconpath, None, source['source_id'])
+			results.append( {'source_name': source['name'], 'results': sourceResult } )
+	
+	for result in results:
+		moviesResult = result['results']
+		for movie in moviesResult:
+			kodi_func.addDir(result['source_name'] + " | " + movie['title'], movie['url'], 'state_play', movie['thumb'], source_id=movie['source_id'])
+	
 def HomeNavigation():	
+	kodi_func.addDir('Meklēt visos avotos', '', 'state_search_all_sources', '%s/meklet.png'% iconpath, None, None)
+	
 	for source in sourceObjects:
-		kodi_func.addDir(source['name'], source['name'], 'state_select_source', source['icon']% iconpath, None, source['source_id'])
+		kodi_func.addDir(source['name']+" - "+source['description'], source['name'], 'state_select_source', source['icon']% iconpath, None, source['source_id'])
 	
 def get_params():
     param=[]
@@ -102,7 +131,9 @@ except:
 	pass
 
 if mode == None:
-	HomeNavigation();
+	HomeNavigation()
+elif mode == 'state_search_all_sources':
+	SearchAllSources()
 elif mode == 'state_select_source':
 	currentObject.HomeNavigation()
 elif mode == 'state_movies':
@@ -112,6 +143,8 @@ elif mode == 'state_play':
 	currentObject.PlayMovie(url, title, picture)
 elif mode == 'state_search':
 	currentObject.Search()
+elif mode == 'state_search_directly':
+	currentObject.Search(url)
 
 		
 

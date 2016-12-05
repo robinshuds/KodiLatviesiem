@@ -15,8 +15,36 @@ mySourceId = 1
 
 mainURL = 'https://cinemalive.tv'
 
-def Search():
-	text = kodi_func.showkeyboard('', u'Meklēt filmu')
+def SearchRaw(searchStr):
+	result = []
+	
+	post_fields = {'search': searchStr}
+	html = network.postHTML("https://cinemalive.tv/scripts/search.php", post_fields)
+	
+	print html
+	# found_items = common.parseDOM(html, "div", attrs = { "style": "height:78px" })
+	found_links = common.parseDOM(html, "a", ret = "href")
+	found_name = common.parseDOM(html, "span", attrs = { "style": "color:#bcbcbc" })
+	found_image = common.parseDOM(html, "img", ret = "src")
+	print found_links
+	print found_name
+	print found_image
+	
+	for i in range(0, len(found_links)):		
+		result.append({
+			'title': found_name[i].encode('utf-8'),
+			'url': found_links[i],
+			'thumb': mainURL+found_image[i].replace(mainURL, "").replace('xs.jpg', 'md.jpg'),
+			'source_id': mySourceId
+		})
+	
+	return result
+		
+def Search(searchStr = None):
+	if searchStr == None:
+		text = kodi_func.showkeyboard('', u'Meklēt filmu')
+	else:
+		text = searchStr
 	print "Search string: " + text
 	post_fields = {'search': text}
 	html = network.postHTML("https://cinemalive.tv/scripts/search.php", post_fields)

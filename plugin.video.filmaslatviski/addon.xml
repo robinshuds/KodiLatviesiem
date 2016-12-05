@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.filmaslatviski" version="1.0.3" name="Filmas Latviski" provider-name="xcoder123">
+<addon id="plugin.video.filmaslatviski" version="1.1.0" name="Filmas Latviski" provider-name="xcoder123">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.urlresolver" version="3.0.24" />
+		<import addon="script.module.urlresolver" version="3.0.25" />
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.module.parsedom" version="0.9.1"/>
-		<import addon="script.module.requests" version="2.7.0"/>
+		<import addon="script.module.requests" version="2.9.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="filmas-latviski.py">
 		<provides>video</provides>
