@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os
 import xbmc
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
 import urllib
+
+mysettings = xbmcaddon.Addon(id = 'plugin.video.filmaslatviski')
+profile = mysettings.getAddonInfo('profile')
+home = mysettings.getAddonInfo('path')
+getSetting = xbmcaddon.Addon().getSetting
+iconpath = xbmc.translatePath(os.path.join(home, 'resources/icons/'))
+
 
 def showkeyboard(txtMessage="",txtHeader="",passwordField=False):
     if txtMessage=='None': txtMessage=''
@@ -38,9 +46,16 @@ def addDir(title, url, mode, picture, page=None, source_id=None):
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=sys_url, listitem=item, isFolder=True)
 	
 def addLink(title, url, picture):
-    if  picture == None:
-        item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage='')
-    else:
+	# if url.startswith('plugin://') == True:
+		# url = 'PlayMedia('+url+')'
+
+	# print url
+
+	if  picture == None:
+		item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage='')
+	else:
 		item = xbmcgui.ListItem(title, iconImage='DefaultVideo.png', thumbnailImage=picture)
-    item.setInfo( type='Video', infoLabels={'Title': title} )	
-    xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=item)
+	item.setInfo( type='Video', infoLabels={'Title': title} )		
+	if url.startswith('plugin://') == True:
+		item.setProperty('IsPlayable', 'true')
+	xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=item)

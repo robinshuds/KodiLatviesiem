@@ -1,8 +1,15 @@
-﻿[B]1.1.0[/B]
+﻿[B]1.2.0[/B]
+- Pievienots vēl viens avots: tvfilm.lv. Kur ir pieejama liela kolekcija are senām latviešu multenēm un filmām. 
+  Bet diemžēl daudzas ir nozudušas no youtube platformas, kur orģināli bijušas hostēti. Šo to labu var uzrakt!
+
+[B]1.1.0[/B]
 - Var meklēt uzreiz pa visiem avotiem
 
 [B]1.0.4[/B]
 - Atjaunoju nepieiciešamo moduļu versiju numurus
+
+[B]1.0.3[/B]
+- Sataisīju kad cenšas kodēt strīma URL, tagad arī mākam dekodēt
 
 [B]1.0.3[/B]
 - Sataisīju kad cenšas kodēt strīma URL, tagad arī mākam dekodēt

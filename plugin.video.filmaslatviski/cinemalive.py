@@ -46,20 +46,10 @@ def Search(searchStr = None):
 	else:
 		text = searchStr
 	print "Search string: " + text
-	post_fields = {'search': text}
-	html = network.postHTML("https://cinemalive.tv/scripts/search.php", post_fields)
+	results = SearchRaw(text)
 	
-	print html
-	# found_items = common.parseDOM(html, "div", attrs = { "style": "height:78px" })
-	found_links = common.parseDOM(html, "a", ret = "href")
-	found_name = common.parseDOM(html, "span", attrs = { "style": "color:#bcbcbc" })
-	found_image = common.parseDOM(html, "img", ret = "src")
-	print found_links
-	print found_name
-	print found_image
-	
-	for i in range(0, len(found_links)):
-		kodi_func.addDir(found_name[i].encode('utf-8'), found_links[i], 'state_play', mainURL+found_image[i].replace(mainURL, "").replace('xs.jpg', 'md.jpg'), source_id=mySourceId )
+	for r in results:
+		kodi_func.addDir(r['title'], r['url'], 'state_play', r['thumb'], source_id=r['source_id'])
 		
 def HomeNavigation():
 	print "Opening CinemaLive.tv"
@@ -69,7 +59,7 @@ def HomeNavigation():
 	nav_links_list = common.parseDOM(html, "div", attrs = { "id": "genre-nav" })
 	nav_links = common.parseDOM(nav_links_list, "a", ret = "href")
 	nav_links_name = common.parseDOM(nav_links_list, "a")
-	kodi_func.addDir('Meklēt', '', 'state_search', None, source_id=mySourceId)
+	kodi_func.addDir('Meklēt', '', 'state_search', '%s/meklet2.png'% kodi_func.iconpath, source_id=mySourceId)
 		
 	# pagirasList = u'https://openload.co/embed/dLuET3ML86E/Deadpool.%28Dedpuls%29.2016.720p.LAT.THEVIDEO.LV.mkv.mp4'	
 	# link = urlresolver.resolve(pagirasList)
@@ -96,7 +86,7 @@ def Movies(url, page=1):
 		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', mainURL+moviesThumbnailURLsList[i], source_id=mySourceId)
 		
 	if len(moviesURLs) >= 50:
-		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', None, str(int(page) + 1), source_id=mySourceId)
+		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', '%s/next.png'% kodi_func.iconpath, str(int(page) + 1), source_id=mySourceId)
 		
 def PlayMovie(url, title, picture):
 	print "url: " + url

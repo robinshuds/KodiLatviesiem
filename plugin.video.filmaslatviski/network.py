@@ -97,6 +97,9 @@ def getHTML(url, data = False):
 		except urllib2.HTTPError, e:
 			print "ERROR while downloading: " + e.fp.read()
 			return
+		except urllib2.URLError, e:
+			print "Couldn't resolve url: " + e.fp.read()
+			return
 
 		html = page.read()
 		

@@ -68,33 +68,14 @@ def Search(searchStr = None):
 		text = searchStr
 	print "Search string: " + text
 	
-	session = requests.session()
-	scraper = cfscrape.create_scraper(sess=session)
-	html = scraper.get("http://tvid.us/movies/search/"+str(text)).content
-	moviesList = common.parseDOM(html, "div", attrs = { "class": "modal-content" })
-	moviesTitleList = common.parseDOM(moviesList, "h4")
-	moviesThumbnailURLsList = common.parseDOM(moviesList, "img", attrs = { "class": "img-responsive" }, ret = "src")
-	moviesURLs = common.parseDOM(moviesList, "a", ret = "href", attrs = { "class": "btn btn-primary" })
-	# print moviesThumbnailURLsList
-	print moviesURLs, len(moviesURLs)
+	results = SearchRaw(text)
 	
-	
-	for i in range(0, len(moviesURLs)):
-		localFile = None
-		try:
-			rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
-			rawImage.decode_content = True	
-			localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].split("/")[-1] )
-			temp = open( localFile, mode='wb')
-			shutil.copyfileobj(rawImage.raw, temp)
-			temp.close()
-			print localFile
-		except:
-			pass
-		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', localFile, source_id=mySourceId)
+	for r in results:
+		kodi_func.addDir(r['title'], r['url'], 'state_play', r['thumb'], source_id=r['source_id'])
 		
-	if len(moviesURLs) >= 27:
-		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', None, str(int(page) + 1), source_id=mySourceId)
+		
+	# if len(results) >= 27:
+		# kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', None, str(int(page) + 1), source_id=mySourceId)
 		
 		
 def HomeNavigation():
@@ -107,8 +88,8 @@ def HomeNavigation():
 	# nav_links_list = common.parseDOM(html, "div", attrs = { "id": "genre-nav" })
 	nav_links = common.parseDOM(html, "a", ret = "href", attrs = { "class": "btn btn-success btn-flat col-xs-12 col-sm-6 col-md-3" })
 	nav_links_name = common.parseDOM(html, "a", attrs = { "class": "btn btn-success btn-flat col-xs-12 col-sm-6 col-md-3" })
-	kodi_func.addDir('Meklēt', '', 'state_search', None, source_id=mySourceId)
-	kodi_func.addDir('Visas Filmas', mainURL, 'state_movies', None, source_id=mySourceId)
+	kodi_func.addDir('Meklēt', '', 'state_search', '%s/meklet2.png'% kodi_func.iconpath, source_id=mySourceId)
+	kodi_func.addDir('Jaunākās Filmas | Visas Filmas', mainURL, 'state_movies', '%s/movie.png'% kodi_func.iconpath, source_id=mySourceId)
 		
 	# pagirasList = u'https://openload.co/embed/dLuET3ML86E/Deadpool.%28Dedpuls%29.2016.720p.LAT.THEVIDEO.LV.mkv.mp4'	
 	# link = urlresolver.resolve(pagirasList)
@@ -149,7 +130,7 @@ def Movies(url, page=1):
 		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', localFile, source_id=mySourceId)
 		
 	if len(moviesURLs) >= 27:
-		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', None, str(int(page) + 1), source_id=mySourceId)
+		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', '%s/next.png'% kodi_func.iconpath, str(int(page) + 1), source_id=mySourceId)
 		
 def PlayMovie(url, title, picture):
 	# print url

@@ -17,6 +17,7 @@ import kodi_func
 #sources
 import cinemalive
 import tvidus
+import tvkanalilv
 
 
 mysettings = xbmcaddon.Addon(id = 'plugin.video.filmaslatviski')
@@ -39,6 +40,13 @@ sourceObjects = [{
 					'description': '(800+ filmas)',
 					'icon': '%s/tvidus.png', 
 					'object': tvidus
+				},
+				{
+					'source_id': 3,
+					'name': 'Senās Filmas', 
+					'description': '(Latviešu Filmas un Multfilmas)',
+					'icon': '%s/senas_lv_filmas.png', 
+					'object': tvkanalilv
 				}]
 				
 def SearchAllSources():
