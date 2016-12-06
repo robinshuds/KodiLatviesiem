@@ -1,4 +1,7 @@
 ﻿[B]1.2.0[/B]
+- Sataisīju lappuses pogu "senās filmas" sekcijai
+  
+[B]1.2.0[/B]
 - Pievienots vēl viens avots: tvfilm.lv. Kur ir pieejama liela kolekcija are senām latviešu multenēm un filmām. 
   Bet diemžēl daudzas ir nozudušas no youtube platformas, kur orģināli bijušas hostēti. Šo to labu var uzrakt!
 

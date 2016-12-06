@@ -106,7 +106,7 @@ def Movies(url, page=1):
 		print "Something went wrong, no movies were loaded"
 		return
 	
-	for i in range(page-1*maxMoviesInPage, maxMoviesInPage-1):
+	for i in range((page-1)*maxMoviesInPage, ((page-1)*maxMoviesInPage)+maxMoviesInPage ):
 		if i < len(moviesList):
 			movie = moviesList[i]
 			print movie
@@ -114,7 +114,7 @@ def Movies(url, page=1):
 		else:
 			break	
 			
-	if len(moviesList) >= maxMoviesInPage:
+	if len(moviesList) >= maxMoviesInPage and ((page-1)*maxMoviesInPage)+maxMoviesInPage <= len(moviesList):
 		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', '%s/next.png'% kodi_func.iconpath, str(int(page) + 1), source_id=mySourceId)
 		
 	# html = network.getHTML(url+"/lapa/"+str(page))
