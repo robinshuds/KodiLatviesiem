@@ -70,7 +70,7 @@ def HomeNavigation():
 	for i in range(0, len(nav_links)):
 		if kodi_func.isLinkUseful(nav_links[i]):
 			# print mainURL + nav_links[i]
-			kodi_func.addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', None, source_id=mySourceId)
+			kodi_func.addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', kodi_func.GetCategoryImage(nav_links_name[i]), source_id=mySourceId)
 			
 def Movies(url, page=1):
 	html = network.getHTML(url+"/lapa/"+str(page))

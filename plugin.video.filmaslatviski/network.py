@@ -4,6 +4,10 @@ import sys
 import urllib, urllib2, ssl, re
 import requests
 
+def exists(url):
+	r = requests.head(url)
+	return r.status_code == requests.codes.ok
+
 def postHTML(url, post_fields):
 
 	if sys.hexversion >= 0x02070BF0:

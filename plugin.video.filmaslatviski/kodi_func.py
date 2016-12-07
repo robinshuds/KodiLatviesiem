@@ -15,6 +15,78 @@ getSetting = xbmcaddon.Addon().getSetting
 iconpath = xbmc.translatePath(os.path.join(home, 'resources/icons/'))
 
 
+
+def GetCategoryImage( str ):
+	str = str.lower()
+	
+	str = str.replace(u'ē', 'e')
+	str = str.replace(u'ŗ', 'r')
+	str = str.replace(u'ū', 'u')
+	str = str.replace(u'ī', 'i')
+	str = str.replace(u'ō', 'o')
+	str = str.replace(u'ā', 'a')
+	str = str.replace(u'š', 's')
+	str = str.replace(u'ģ', 'g')
+	str = str.replace(u'ķ', 'k')
+	str = str.replace(u'ļ', 'l')
+	str = str.replace(u'ž', 'z')
+	str = str.replace(u'č', 'c')
+	str = str.replace(u'ņ', 'n')
+	
+	if str == 'animacija' or str == 'bernu filmas un multfilmas':
+		return '%s/categories/Animation.png'% iconpath
+	elif str == 'asa sizeta' or str == 'spriedzes, asa sizeta filmas':
+		return '%s/categories/Action.png'% iconpath
+	elif str == 'biografija':
+		return '%s/categories/Biography.png'% iconpath
+	elif str == 'dokumentala' or str == 'dokumentalas filmas':
+		return '%s/categories/Documentary.png'% iconpath
+	elif str == 'drama' or str == 'dramas un biografiskas filmas':
+		return '%s/categories/Drama.png'% iconpath
+	elif str == 'fantazija':
+		return '%s/categories/Fantasy.png'% iconpath
+	elif str == 'gimenes':
+		return '%s/categories/Family.png'% iconpath
+	elif str == 'komedija' or str == 'komedijas':
+		return '%s/categories/Comedy.png'% iconpath
+	elif str == 'muzikls' or str == 'muzikli':
+		return '%s/categories/Musical.png'% iconpath
+	elif str == 'piedzivojumu' or str == 'piedzivojumu un gimenes filmas':
+		return '%s/categories/Adventure.png'% iconpath
+	elif str == 'romantika' or str == 'romantiskas filmas':
+		return '%s/categories/Romance.png'% iconpath
+	elif str == 'sausmu' or str == 'sausmu un mistikas filmas':
+		return '%s/categories/Horror.png'% iconpath
+	elif str == 'trilleris':
+		return '%s/categories/Thriller.png'% iconpath
+	elif str == 'fantastika' or str == 'zinatniska fantastika':
+		return '%s/categories/Sci-fi.png'% iconpath
+	elif str == 'sporta':
+		return '%s/categories/Sport.png'% iconpath
+	elif str == 'kara':
+		return '%s/categories/War.png'% iconpath
+	elif str == 'vesturiska':
+		return '%s/categories/History.png'% iconpath
+	elif str == 'westerns' or str == 'vesterns':
+		return '%s/categories/Western.png'% iconpath
+	elif str == 'jaunakas':
+		return '%s/new.png'% iconpath
+	elif str == 'vertetakas':
+		return '%s/star.png'% iconpath
+	elif str == 'skatitakas':
+		return '%s/movie-2.png'% iconpath
+	elif str == 'mistika' or str == 'misterija':
+		return '%s/categories/Mystery.png'% iconpath
+	elif str == 'filmas krievu valoda':
+		return '%s/categories/russian.png'% iconpath
+	elif str == 'latviesu filmas':
+		return '%s/categories/latvia.png'% iconpath
+	elif str == 'detektivs':
+		return '%s/categories/detective.png'% iconpath
+	
+	
+	return '%s/categories/Others.png'% iconpath
+
 def showkeyboard(txtMessage="",txtHeader="",passwordField=False):
     if txtMessage=='None': txtMessage=''
     keyboard = xbmc.Keyboard(txtMessage, txtHeader, passwordField)#("text to show","header text", True="password field"/False="show text")

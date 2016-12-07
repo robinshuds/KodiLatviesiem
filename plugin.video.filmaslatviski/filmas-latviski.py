@@ -18,6 +18,7 @@ import kodi_func
 import cinemalive
 import tvidus
 import tvkanalilv
+import fof
 
 
 mysettings = xbmcaddon.Addon(id = 'plugin.video.filmaslatviski')
@@ -25,6 +26,8 @@ profile = mysettings.getAddonInfo('profile')
 home = mysettings.getAddonInfo('path')
 getSetting = xbmcaddon.Addon().getSetting
 iconpath = xbmc.translatePath(os.path.join(home, 'resources/icons/'))
+
+skin_used = xbmc.getSkinDir()
 
 
 sourceObjects = [{
@@ -47,6 +50,13 @@ sourceObjects = [{
 					'description': '(Latviešu Filmas un Multfilmas)',
 					'icon': '%s/senas_lv_filmas.png', 
 					'object': tvkanalilv
+				},
+				{
+					'source_id': 4,
+					'name': 'fof.lv', 
+					'description': '(300+ filmas)',
+					'icon': '%s/fof.png', 
+					'object': fof
 				}]
 				
 def SearchAllSources():
@@ -80,6 +90,10 @@ def HomeNavigation():
 	for source in sourceObjects:
 		kodi_func.addDir(source['name']+" - "+source['description'], source['name'], 'state_select_source', source['icon']% iconpath, None, source['source_id'])
 	
+def SetThumbnailView():
+	if skin_used == 'skin.confluence':
+		xbmc.executebuiltin('Container.SetViewMode(500)') # "Thumbnail" view
+		
 def get_params():
     param=[]
     paramstring=sys.argv[2]
@@ -140,19 +154,24 @@ except:
 
 if mode == None:
 	HomeNavigation()
+	SetThumbnailView()
 elif mode == 'state_search_all_sources':
 	SearchAllSources()
+	SetThumbnailView()
 elif mode == 'state_select_source':
 	currentObject.HomeNavigation()
+	SetThumbnailView()
 elif mode == 'state_movies':
-	# print currentObject
 	currentObject.Movies(url, page)
+	SetThumbnailView()
 elif mode == 'state_play':
 	currentObject.PlayMovie(url, title, picture)
 elif mode == 'state_search':
 	currentObject.Search()
+	SetThumbnailView()
 elif mode == 'state_search_directly':
 	currentObject.Search(url)
+	SetThumbnailView()
 
 		
 

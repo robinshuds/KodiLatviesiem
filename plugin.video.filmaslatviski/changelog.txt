@@ -1,4 +1,9 @@
-﻿[B]1.2.0[/B]
+﻿[B]1.3.0[/B]
+- Pievienots vēl viens avots fof.lv, tikai problēma ka viņiem meklēšana īsti nestrādā pašā lapā, tā kā negaidiet kārtīgu meklēšanas funkciju no šī avota. Nākamis solis ir indeksēt lapu, lai var implementāt normālu meklēšanu
+- Pievienotas ikonas kategorijām un visām citām pogām
+- Automātiski confluence skins pārslēgsies uz thumbnail view
+
+[B]1.2.1[/B]
 - Sataisīju lappuses pogu "senās filmas" sekcijai
   
 [B]1.2.0[/B]

@@ -89,7 +89,7 @@ def HomeNavigation():
 	nav_links = common.parseDOM(html, "a", ret = "href", attrs = { "class": "btn btn-success btn-flat col-xs-12 col-sm-6 col-md-3" })
 	nav_links_name = common.parseDOM(html, "a", attrs = { "class": "btn btn-success btn-flat col-xs-12 col-sm-6 col-md-3" })
 	kodi_func.addDir('Meklēt', '', 'state_search', '%s/meklet2.png'% kodi_func.iconpath, source_id=mySourceId)
-	kodi_func.addDir('Jaunākās Filmas | Visas Filmas', mainURL, 'state_movies', '%s/movie.png'% kodi_func.iconpath, source_id=mySourceId)
+	kodi_func.addDir('Jaunākās Filmas | Visas Filmas', mainURL, 'state_movies', '%s/new.png'% kodi_func.iconpath, source_id=mySourceId)
 		
 	# pagirasList = u'https://openload.co/embed/dLuET3ML86E/Deadpool.%28Dedpuls%29.2016.720p.LAT.THEVIDEO.LV.mkv.mp4'	
 	# link = urlresolver.resolve(pagirasList)
@@ -100,7 +100,7 @@ def HomeNavigation():
 	for i in range(0, len(nav_links)):
 		if kodi_func.isLinkUseful(nav_links[i]):
 			# print mainURL + nav_links[i]
-			kodi_func.addDir(nav_links_name[i].encode('utf-8'), 'http:' + nav_links[i], 'state_movies', None, source_id=mySourceId)
+			kodi_func.addDir(nav_links_name[i].encode('utf-8'), 'http:' + nav_links[i], 'state_movies', kodi_func.GetCategoryImage(nav_links_name[i]), source_id=mySourceId)
 			
 def Movies(url, page=1):
 	session = requests.session()

@@ -83,8 +83,8 @@ def HomeNavigation():
 	# nav_links = common.parseDOM(nav_links_list, "a", ret = "href")
 	# nav_links_name = common.parseDOM(nav_links_list, "a")
 	kodi_func.addDir('Meklēt', '', 'state_search', '%s/meklet2.png'% kodi_func.iconpath, source_id=mySourceId)
-	kodi_func.addDir('Latviešu Filmas', 'filmas', 'state_movies', '%s/cat_other.png'% kodi_func.iconpath, source_id=mySourceId)
-	kodi_func.addDir('Latviešu Multfilmas', 'multfilmas', 'state_movies', '%s/cat_animation.png'% kodi_func.iconpath, source_id=mySourceId)
+	kodi_func.addDir('Latviešu Filmas', 'filmas', 'state_movies', '%s/categories/latvia.png'% kodi_func.iconpath, source_id=mySourceId)
+	kodi_func.addDir('Latviešu Multfilmas', 'multfilmas', 'state_movies', '%s/Categories/Animation.png'% kodi_func.iconpath, source_id=mySourceId)
 		
 	# print nav_links
 	# print nav_links_name
