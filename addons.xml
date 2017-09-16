@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dzivaistv" version="1.2.4" name="Dzīvais TV" provider-name="xcoder123">
+<addon id="plugin.video.dzivaistv" version="1.19.0" name="Dzīvais TV" provider-name="RobinsHuds">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.module.parsedom" version="0.9.1"/>
 		<import addon="script.module.requests" version="2.9.1"/>
+		<import addon="script.module.pyxbmct" version="1.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -15,12 +16,12 @@
 		<description lang="en">Skaties dzīvo TV latviešu valodā un citās.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<source>https://github.com/xcoder123/KodiLatviesiem</source>
+		<source>https://github.com/robinshuds/KodiLatviesiem</source>
 		<news></news>
 	</extension>
 </addon>
 
-<addon id="plugin.video.filmaslatviski" version="1.3.0" name="Filmas Latviski" provider-name="xcoder123">
+<addon id="plugin.video.filmaslatviski" version="1.6.0" name="Filmas Latviski" provider-name="RobinsHuds">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.urlresolver" version="3.0.25" />
@@ -36,16 +37,16 @@
 		<description lang="en">Skaties filmas latviešu valodā</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<source>https://github.com/xcoder123/KodiLatviesiem</source>
+		<source>https://github.com/robinshuds/KodiLatviesiem</source>
 		<news></news>
 	</extension>
 </addon>
 
-<addon id="repository.latviesiem" name="Kodi Latviesiem Addons" version="1.0.2" provider-name="xcoder123">
+<addon id="repository.latviesiem" name="Kodi Latviesiem Addons" version="1.0.3" provider-name="RobinsHuds">
 	<extension point="xbmc.addon.repository" name="Kodi Latviesiem Addon Repository">
-		<info compressed="false">https://offshoregit.com/xcoder123/KodiLatviesiem/addons.xml</info>
-		<checksum>https://offshoregit.com/xcoder123/KodiLatviesiem/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/xcoder123/KodiLatviesiem/repo/</datadir>
+		<info compressed="false">https://github.com/robinshuds/KodiLatviesiem/raw/master/addons.xml</info>
+		<checksum>https://github.com/robinshuds/KodiLatviesiem/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/robinshuds/KodiLatviesiem/raw/master/repo/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install Kodi Latviesiem</summary>

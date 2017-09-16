@@ -19,6 +19,10 @@ import cinemalive
 import tvidus
 import tvkanalilv
 import fof
+import movieplace
+import skaties
+import tvidus_sovi
+# import kinoportals # Doesn't work at the moment, all it's sources have 404 error
 
 
 mysettings = xbmcaddon.Addon(id = 'plugin.video.filmaslatviski')
@@ -37,13 +41,13 @@ sourceObjects = [{
 					'icon': '%s/cinemalive.png', 
 					'object': cinemalive
 				},
-				{
-					'source_id': 2,
-					'name': 'tvid.us', 
-					'description': '(800+ filmas)',
-					'icon': '%s/tvidus.png', 
-					'object': tvidus
-				},
+				# {
+					# 'source_id': 2,
+					# 'name': 'tvid.us', 
+					# 'description': '(800+ filmas)',
+					# 'icon': '%s/tvidus.png', 
+					# 'object': tvidus
+				# },
 				{
 					'source_id': 3,
 					'name': 'Senās Filmas', 
@@ -57,7 +61,29 @@ sourceObjects = [{
 					'description': '(300+ filmas)',
 					'icon': '%s/fof.png', 
 					'object': fof
-				}]
+				},
+				{
+					'source_id': 5,
+					'name': 'movieplace.lv', 
+					'description': '(1880+ filmas)',
+					'icon': '%s/movieplace.png', 
+					'object': movieplace
+				},
+				{
+					'source_id': 6,
+					'name': 'skaties.lv', 
+					'description': 'MTG Oficiālais portāls',
+					'icon': '%s/skaties.png', 
+					'object': skaties
+				}
+				# {
+					# 'source_id': 7,
+					# 'name': 'tvid.us šovi', 
+					# 'description': 'Šovi un seriāli',
+					# 'icon': '%s/tvidus_sovi.png', 
+					# 'object': tvidus_sovi
+				# }
+			]
 				
 def SearchAllSources():
 	searchStr = kodi_func.showkeyboard('', u'Meklēt filmas')
@@ -82,7 +108,7 @@ def SearchAllSources():
 	for result in results:
 		moviesResult = result['results']
 		for movie in moviesResult:
-			kodi_func.addDir(result['source_name'] + " | " + movie['title'], movie['url'], 'state_play', movie['thumb'], source_id=movie['source_id'])
+			kodi_func.addDir(result['source_name'] + " | " + movie['title'], movie['url'], movie['state'], movie['thumb'], source_id=movie['source_id'])
 	
 def HomeNavigation():	
 	kodi_func.addDir('Meklēt visos avotos', '', 'state_search_all_sources', '%s/meklet.png'% iconpath, None, None)
@@ -172,12 +198,25 @@ elif mode == 'state_search':
 elif mode == 'state_search_directly':
 	currentObject.Search(url)
 	SetThumbnailView()
+elif mode == 'state_shows':
+	currentObject.Shows(url, page)
+	SetThumbnailView()
+elif mode == 'state_seasons':
+	currentObject.Seasons(url, title, picture)
+elif mode == 'state_episodes':
+	currentObject.Episodes(url, title, picture)
 
 		
 
 # print(requests.get("https://cinemalive.tv/filmaslatviski", verify=False))
+# url = urlresolver.resolve('http://hqq.tv/player/embed_player.php?vid=227233210207205244209221210211231238&autoplay=no') 
+# print url
 
 	
+# li = xbmcgui.ListItem('tests', iconImage='DefaultVideo.png')
+# testUrl = "http://hy53gd.vkcache.com/secip/0/kYic8uDe2fxwb2YHrXHjEg/OTIuNDAuMjQ5LjUy/1481619600/hls-vod-s1/flv/api/files/videos/2013/07/29/13750584475fa86?socket|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X)"
+# kodi_func.addLink('test', testUrl.encode('utf-8'), None)	
+
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 

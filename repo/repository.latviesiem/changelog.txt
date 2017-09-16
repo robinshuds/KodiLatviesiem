@@ -1,6 +1,11 @@
+[B]Version 1.0.3[/B]
+- Moved back to github
+
+[B]Version 1.0.1[/B]
+- Moved to Offshoregit
+
 [B]Version 1.0.1[/B]
 - https github links
-
 
 [B]Version 1.0.0[/B]
 - Initial version

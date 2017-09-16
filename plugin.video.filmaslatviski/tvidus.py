@@ -27,6 +27,8 @@ mainURL = 'http://tvid.us/movies'
 def SearchRaw(searchStr):
 	result = []
 	
+	if searchStr == False or len(searchStr) == 0: return result
+	
 	session = requests.session()
 	scraper = cfscrape.create_scraper(sess=session)
 	html = scraper.get("http://tvid.us/movies/search/"+str(searchStr)).content
@@ -55,6 +57,7 @@ def SearchRaw(searchStr):
 			'title': moviesTitleList[i].encode('utf-8'),
 			'url': moviesURLs[i],
 			'thumb': localFile,
+			'state': 'state_play',
 			'source_id': mySourceId
 		})	
 	
@@ -111,14 +114,17 @@ def Movies(url, page=1):
 	moviesTitleList = common.parseDOM(moviesList, "h4")
 	moviesThumbnailURLsList = common.parseDOM(moviesList, "img", attrs = { "class": "img-responsive" }, ret = "src")
 	moviesURLs = common.parseDOM(moviesList, "a", ret = "href", attrs = { "class": "btn btn-primary" })
-	# print moviesThumbnailURLsList
+	print moviesThumbnailURLsList
 	print moviesURLs, len(moviesURLs)
 	
 	
 	for i in range(0, len(moviesURLs)):
 		localFile = None
 		try:
-			rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
+			if "http:" not in moviesThumbnailURLsList[i]:
+				rawImage = scraper.get("http:"+moviesThumbnailURLsList[i], stream=True)
+			else:
+				rawImage = scraper.get(moviesThumbnailURLsList[i], stream=True)
 			rawImage.decode_content = True	
 			localFile = xbmc.translatePath('special://temp/'+moviesThumbnailURLsList[i].split("/")[-1] )
 			temp = open( localFile, mode='wb')

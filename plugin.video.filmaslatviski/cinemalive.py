@@ -7,6 +7,7 @@ import xbmcplugin
 import urlresolver
 import CommonFunctions
 import kodi_func
+import url_resolver_plus
 
 common = CommonFunctions
 common.plugin = "Filmas-Latviski-1.0.0"
@@ -18,23 +19,26 @@ mainURL = 'https://cinemalive.tv'
 def SearchRaw(searchStr):
 	result = []
 	
-	post_fields = {'search': searchStr}
-	html = network.postHTML("https://cinemalive.tv/scripts/search.php", post_fields)
+	# post_fields = {'search': searchStr}
+	# html = network.postHTML("https://cinemalive.tv/scripts/search.php", post_fields)
+	html = network.getHTML("https://cinemalive.tv/?s="+searchStr)
 	
 	print html
-	# found_items = common.parseDOM(html, "div", attrs = { "style": "height:78px" })
-	found_links = common.parseDOM(html, "a", ret = "href")
-	found_name = common.parseDOM(html, "span", attrs = { "style": "color:#bcbcbc" })
-	found_image = common.parseDOM(html, "img", ret = "src")
+	found_items = common.parseDOM(html, "div", attrs = { "class": "result-item" })
+	found_title = common.parseDOM(found_items, "div", attrs={"class": "title"})
+	found_links = common.parseDOM(found_title, "a", ret = "href")
+	found_name = common.parseDOM(found_title, "a")
+	found_image = common.parseDOM(found_items, "img", ret = "src")
 	print found_links
 	print found_name
 	print found_image
 	
 	for i in range(0, len(found_links)):		
 		result.append({
-			'title': found_name[i].encode('utf-8'),
+			'title': found_name[i].replace('<span class="search-everything-highlight-color" style="background-color:#6dbd4d">','').replace('</span>','').encode('utf-8'),
 			'url': found_links[i],
-			'thumb': mainURL+found_image[i].replace(mainURL, "").replace('xs.jpg', 'md.jpg'),
+			'thumb': mainURL+found_image[i].replace(mainURL, "").replace('150x150.jpg', '185x278.jpg'),
+			'state': 'state_play',
 			'source_id': mySourceId
 		})
 	
@@ -56,7 +60,7 @@ def HomeNavigation():
 	url = 'https://cinemalive.tv/filmaslatviski'
 	html = network.getHTML(url)
 	# print 'html: ' + html
-	nav_links_list = common.parseDOM(html, "div", attrs = { "id": "genre-nav" })
+	nav_links_list = common.parseDOM(html, "ul", attrs = { "class": "sub-menu" })[0]
 	nav_links = common.parseDOM(nav_links_list, "a", ret = "href")
 	nav_links_name = common.parseDOM(nav_links_list, "a")
 	kodi_func.addDir('Meklēt', '', 'state_search', '%s/meklet2.png'% kodi_func.iconpath, source_id=mySourceId)
@@ -70,22 +74,36 @@ def HomeNavigation():
 	for i in range(0, len(nav_links)):
 		if kodi_func.isLinkUseful(nav_links[i]):
 			# print mainURL + nav_links[i]
-			kodi_func.addDir(nav_links_name[i].encode('utf-8'), mainURL + nav_links[i], 'state_movies', kodi_func.GetCategoryImage(nav_links_name[i]), source_id=mySourceId)
+			kodi_func.addDir(nav_links_name[i].encode('utf-8'),  nav_links[i], 'state_movies', kodi_func.GetCategoryImage(nav_links_name[i]), source_id=mySourceId)
 			
 def Movies(url, page=1):
-	html = network.getHTML(url+"/lapa/"+str(page))
+
+	print "Original URL: " , url
+	generatedUrl = url
+	if mainURL not in generatedUrl:
+		generatedUrl = mainURL + generatedUrl
+		
+	if "?get=" in  generatedUrl:
+		index = generatedUrl.index("?")
+		generatedUrl = generatedUrl[:index] + "/page/"+str(page) + "/" + generatedUrl[index:]
+	else:
+		generatedUrl = generatedUrl + "/page/"+str(page) 
+		
+	print "generated url",generatedUrl
+	html = network.getHTML(generatedUrl)
 	# print "html" + url
-	moviesList = common.parseDOM(html, "div", attrs = { "class": "base-used" })
-	moviesTitleList = common.parseDOM(moviesList, "h2")
-	moviesThumbnailURLsList = common.parseDOM(moviesList, "img", attrs = { "class": "img-thumbnail" }, ret = "src")
-	moviesURLs = common.parseDOM(moviesList, "a", ret = "href")
+	moviesList = common.parseDOM(html, "div", attrs = { "class": "poster" })
+	moviesThumbnailURLsList = common.parseDOM(moviesList, "img", ret = "src")
+	moviesListData = common.parseDOM(html, "div", attrs = { "class": "data" })
+	moviesTitleList = common.parseDOM(moviesListData, "a")
+	moviesURLs = common.parseDOM(moviesListData, "a", ret = "href")
 	# print moviesThumbnailURLsList
 	
 	
 	for i in range(0, len(moviesURLs)):
-		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', mainURL+moviesThumbnailURLsList[i], source_id=mySourceId)
+		kodi_func.addDir(moviesTitleList[i].encode('utf-8'), moviesURLs[i], 'state_play', moviesThumbnailURLsList[i], source_id=mySourceId)
 		
-	if len(moviesURLs) >= 50:
+	if len(moviesURLs) >= 40:
 		kodi_func.addDir("Nākamā Lapa >>", url , 'state_movies', '%s/next.png'% kodi_func.iconpath, str(int(page) + 1), source_id=mySourceId)
 		
 def PlayMovie(url, title, picture):
@@ -93,7 +111,7 @@ def PlayMovie(url, title, picture):
 	html = network.getHTML(url)
 	print "html: " + html
 	
-	mainMovieCol = common.parseDOM(html, "div", attrs = { "class": "row mov-com-col"} )
+	mainMovieCol = common.parseDOM(html, "div", attrs = { "class": "playex"} )
 	print mainMovieCol
 	videoContainers = common.parseDOM(mainMovieCol[0], "source", ret="src")
 	videoContainers = videoContainers + common.parseDOM(mainMovieCol[0], "iframe", ret="src")
@@ -102,17 +120,17 @@ def PlayMovie(url, title, picture):
 	print title.decode('latin-1').encode('utf-8')
 	
 	if len(videoContainers) > 0:		
-		link = urlresolver.resolve(videoContainers[0])
+		link = url_resolver_plus.resolve(videoContainers[0])
 		if link != False:
 			kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Latviski", link.encode('utf-8'), picture)	
-		elif kodi_func.isVideoFormat(videoContainers[0].split(".")[-1]):
+		elif '.' in videoContainers[0] and kodi_func.isVideoFormat(videoContainers[0].split(".")[-1]):
 			kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Latviski", videoContainers[0], picture)	
 		print link
 	if len(videoContainers) > 1:
-		link = urlresolver.resolve(videoContainers[1])
+		link = url_resolver_plus.resolve(videoContainers[1])
 		if link != False:
 			kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Angliski", link.encode('utf-8'), picture)
-		elif isVideoFormat(videoContainers[1].split(".")[-1]):
+		elif '.' in videoContainers[1] and kodi_func.isVideoFormat(videoContainers[1].split(".")[-1]):
 			kodi_func.addLink(title.decode('utf-8').encode('utf-8') + " - Latviski", videoContainers[1], picture)	
 			
 		print link

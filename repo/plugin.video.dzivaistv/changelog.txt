@@ -1,4 +1,68 @@
-﻿[B]1.2.4[/B]
+﻿[B]1.19.0[/B]
+- Pārmainam repo
+
+[B]1.18.0[/B]
+- Pievienoju jaunu viasat sport baltic strīmu. Galu galā pasaules čempis!
+
+[B]1.17.0[/B]
+- Pievienoti papildus strīmi latviešu kanāliem (╯°□°)╯︵ ┻━┻
+
+[B]1.16.1[/B]
+- Uzlabots testeris
+
+[B]1.16.0[/B]
+- Pievienoti vēl 2 tv programmu pārseri no seetv un tivix. Lielākajai daļai kanālu izņemot sporta ir pieejama TV programma
+- TV Programmas poga arī pievienota zem strīmiem, ja kāds nezina ka ar "C", vai labo klikšķi var tikt klāt pie viņas
+
+[B]1.15.0[/B]
+- Pievienota iespēja skatīt dažiem kanāliem TV programmu. Uz kanālu pirms strīmu saraksta nospiediet labo taustiņu vai ilgāk paturiet enter, un jum
+	piedāvās skatīt tv programmu
+- ja ievada "devtools" atslēgu var pārbaudīt kuri strīmi strādā un kuri nē
+
+[B]1.14.0[/B]
+- Nedaudz uzlabots TIVIX dekodera ātrums. Tagad aptuveni 200x ātrāk spēj atvērt strīmu
+- Pievienots ziņojums, kad tiek atvērts strīms.
+- Pievienoti papildus sporta strīmi no TIVIX un SEETV
+
+[B]1.13.0[/B]
+- Pievienota sporta kategorija, un daži sporta kanāli ieskaitot "Viasat Sport Baltic". Diemžēl pašreizējie strīmi ārzemēs nefunkcionēs.
+
+[B]1.12.0[/B]
+- Daži kanāli diemžēl ir jāaizslēdz dēļ ierobežotiem resursiem
+
+[B]1.11.0[/B]
+- Pievienoti papildus avoti latvijas kanāliem
+
+[B]1.10.0[/B]
+- Pārveidots strīmu palaišanas kods, kur tiek dekodēti strīmi tikai kad tiek viņš izvēlēts, nevis visi vienlaicīgi
+- Sakārtots kods, lai vieglāk pievienot jaunus avotus
+
+[B]1.9.0[/B]
+- Pievienoti papildus strīmi Rossija1, Rossija24 no vesti.ru
+
+[B]1.8.0[/B]
+- Pievienoti papildus strīmi Rossija1, Rossija24 un zvejniekiem kanāls
+
+[B]1.7.0[/B]
+- Pievienoti papildus strīmi filmām: TV1000, TV1000 Comedy, TV1000 Premium, TV1000 Russkoje Kino, nashakino, kinofilm utt.
+
+[B]1.6.0[/B]
+- Pievienoti papildus strīmi LTV1 un LTV7
+
+[B]1.5.0[/B]
+- Atjaunoju dažas ikonas lai atbilst stilam
+- Pievienoju mūzikas kategoriju un dažus mūzikas kanālus
+
+[B]1.4.0[/B]
+- Dažiem dokumentālajiem kanāliem un krievu kanāliem, pievienots vēl viens avots Tivix.
+
+[B]1.3.0[/B]
+- Pievienots kaudze kanālu krievu mēlē:
+	-Discovery Channel, Discovery Science, Animal Planet, Viasat History, Viasat Nature, National Geographic, Nat Geo Wild
+	-STB, TNT, TNT4 (comedy TV), Kinohit, RenTV, STS, 1
+- Automātiski tiks ieslēgts ikona skats
+
+[B]1.2.4[/B]
 - TV Logo, tagad arī parādās ka tiek palaists strīms
 - Pievienoju sarkanu tekstu pie strīmiem kurus zinam ka neiet ārzemēs.
 

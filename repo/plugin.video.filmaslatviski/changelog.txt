@@ -1,4 +1,37 @@
-﻿[B]1.3.0[/B]
+﻿[B]1.6.0[/B]
+- Atjaunoti dekoderi priekš 2 lielākajiem strīmu provaideriem.
+- Nomainītis repo
+
+[B]1.5.4[/B]
+- Diemžēl viens no avotiem ir aigājis citos medību laukos
+
+[B]1.5.3[/B]
+- Skaties.lv, vajadzētu strādāt ārzemēs
+
+[B]1.5.2[/B]
+- Atjaunota bilžu lejupielāde priekš "tvid.us". Viņi nomainīja kā tiek attēlots URL
+
+[B]1.5.1[/B]
+- Izlabots gļuks "skaties.lv" avotā, kur nepareizi cittreiz tiek atpazīts cik laiks palicis filmai
+
+[B]1.5.0[/B]
+- Pievienots avots "skaties.lv", kur ir iespēja piekļūt oficiālajām filmām no MTG kanāliem
+- Pievienots avots seriāliem un šoviem no "tvid.us"
+- Daži labojumi kodā
+
+[B]1.4.1[/B]
+- Uzlabots dekoderis movieportals.lv, tagad vajadzēt vēl kādus pāris % vairāk filmas dekodēt. Ja nāk no cita portāla, tad diemžēl nespēs dekodēt, bet ja ir hqq, kas viņiem standards, tad tagad vajadzētu visus tos dekodēt
+
+[B]1.4.0[/B]
+- pievienota movieportals.lv avots, vajadzētu strādāt lielākajai daļai filmu, bet šis portāls tik daudz avotus miksē ka ir ļoti grūti izsekot lai pilnīgi viss ietu
+
+[B]1.3.2[/B]
+- pievienota Fof.lv indeksācija. Tagad ir pareiza meklēšanas funkcija
+
+[B]1.3.1[/B]
+- Drukas kļūda ikonas faila nosaukumam, kur linux protams piečakarējas
+
+[B]1.3.0[/B]
 - Pievienots vēl viens avots fof.lv, tikai problēma ka viņiem meklēšana īsti nestrādā pašā lapā, tā kā negaidiet kārtīgu meklēšanas funkciju no šī avota. Nākamis solis ir indeksēt lapu, lai var implementāt normālu meklēšanu
 - Pievienotas ikonas kategorijām un visām citām pogām
 - Automātiski confluence skins pārslēgsies uz thumbnail view
@@ -16,8 +49,6 @@
 [B]1.0.4[/B]
 - Atjaunoju nepieiciešamo moduļu versiju numurus
 
-[B]1.0.3[/B]
-- Sataisīju kad cenšas kodēt strīma URL, tagad arī mākam dekodēt
 
 [B]1.0.3[/B]
 - Sataisīju kad cenšas kodēt strīma URL, tagad arī mākam dekodēt

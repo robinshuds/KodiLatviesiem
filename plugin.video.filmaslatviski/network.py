@@ -3,6 +3,26 @@
 import sys
 import urllib, urllib2, ssl, re
 import requests
+import httplib
+import urlparse
+import re
+
+UA = 'Mozilla/6.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.5) Gecko/2008092417 Firefox/3.0.3'
+
+def cleanHTML(raw_html):
+	cleanr = re.compile('<.*?>')
+	cleantext = re.sub(cleanr, '', raw_html)
+	return cleantext
+
+def unshorten_url(url):
+    parsed = urlparse.urlparse(url)
+    h = httplib.HTTPConnection(parsed.netloc)
+    h.request('HEAD', parsed.path)
+    response = h.getresponse()
+    if response.status/100 == 3 and response.getheader('Location'):
+        return response.getheader('Location')
+    else:
+        return url
 
 def exists(url):
 	r = requests.head(url)
@@ -117,3 +137,31 @@ def getHTML(url, data = False):
 	
 	print "URL Downloaded"
 	return html
+	
+def request(url, headers={}):
+    print('request: %s' % url)
+    req = urllib2.Request(url, headers=headers)
+    req.add_header('User-Agent', UA)
+    try:
+        response = urllib2.urlopen(req)
+        data = response.read()
+        response.close()
+    except urllib2.HTTPError, error:
+        data=error.read() 
+        error.close()
+    print('len(data) %s' % len(data))
+    return data
+
+
+def post(url, data, headers={}):
+    postdata = urllib.urlencode(data)
+    req = urllib2.Request(url, postdata, headers)
+    req.add_header('User-Agent', UA)
+    try:
+        response = urllib2.urlopen(req)
+        data = response.read()
+        response.close()
+    except urllib2.HTTPError, error:
+        data=error.read() 
+        error.close()
+    return data

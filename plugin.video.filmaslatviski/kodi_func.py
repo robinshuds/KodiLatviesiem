@@ -33,15 +33,15 @@ def GetCategoryImage( str ):
 	str = str.replace(u'č', 'c')
 	str = str.replace(u'ņ', 'n')
 	
-	if str == 'animacija' or str == 'bernu filmas un multfilmas':
+	if str == 'animacija' or str == 'bernu filmas un multfilmas' or str == 'animacijas' or str == 'berniem':
 		return '%s/categories/Animation.png'% iconpath
 	elif str == 'asa sizeta' or str == 'spriedzes, asa sizeta filmas':
 		return '%s/categories/Action.png'% iconpath
 	elif str == 'biografija':
 		return '%s/categories/Biography.png'% iconpath
-	elif str == 'dokumentala' or str == 'dokumentalas filmas':
+	elif str == 'dokumentala' or str == 'dokumentalas filmas' or str == 'dokumentalas':
 		return '%s/categories/Documentary.png'% iconpath
-	elif str == 'drama' or str == 'dramas un biografiskas filmas':
+	elif str == 'drama' or str == 'dramas un biografiskas filmas' or str == 'dramas':
 		return '%s/categories/Drama.png'% iconpath
 	elif str == 'fantazija':
 		return '%s/categories/Fantasy.png'% iconpath
@@ -53,19 +53,19 @@ def GetCategoryImage( str ):
 		return '%s/categories/Musical.png'% iconpath
 	elif str == 'piedzivojumu' or str == 'piedzivojumu un gimenes filmas':
 		return '%s/categories/Adventure.png'% iconpath
-	elif str == 'romantika' or str == 'romantiskas filmas':
+	elif str == 'romantika' or str == 'romantiskas filmas' or str == 'romantiskas':
 		return '%s/categories/Romance.png'% iconpath
-	elif str == 'sausmu' or str == 'sausmu un mistikas filmas':
+	elif str == 'sausmu' or str == 'sausmu un mistikas filmas' or str == 'sausmenes':
 		return '%s/categories/Horror.png'% iconpath
-	elif str == 'trilleris':
+	elif str == 'trilleris' or str == 'trilleri':
 		return '%s/categories/Thriller.png'% iconpath
-	elif str == 'fantastika' or str == 'zinatniska fantastika':
+	elif str == 'fantastika' or str == 'zinatniska fantastika' or str == 'fantastikas':
 		return '%s/categories/Sci-fi.png'% iconpath
 	elif str == 'sporta':
 		return '%s/categories/Sport.png'% iconpath
 	elif str == 'kara':
 		return '%s/categories/War.png'% iconpath
-	elif str == 'vesturiska':
+	elif str == 'vesturiska' or str == 'vesturiskas':
 		return '%s/categories/History.png'% iconpath
 	elif str == 'westerns' or str == 'vesterns':
 		return '%s/categories/Western.png'% iconpath
@@ -77,12 +77,14 @@ def GetCategoryImage( str ):
 		return '%s/movie-2.png'% iconpath
 	elif str == 'mistika' or str == 'misterija':
 		return '%s/categories/Mystery.png'% iconpath
-	elif str == 'filmas krievu valoda':
+	elif str == 'filmas krievu valoda' or str == 'krieviski':
 		return '%s/categories/russian.png'% iconpath
 	elif str == 'latviesu filmas':
 		return '%s/categories/latvia.png'% iconpath
 	elif str == 'detektivs':
 		return '%s/categories/detective.png'% iconpath
+	elif str == 'ziemassvetku':
+		return '%s/categories/christmas.png'% iconpath
 	
 	
 	return '%s/categories/Others.png'% iconpath
@@ -101,6 +103,10 @@ def isLinkUseful(needle):
     return needle not in haystack
 	
 def isVideoFormat(needle):
+    if "?" not in needle:
+        return False
+        
+    needle = needle.split("?")[0]
     haystack = ['mp4', 'avi', 'mp4?mime=true', 'm3u8', 'mov']
     return needle in haystack
 	
@@ -131,3 +137,23 @@ def addLink(title, url, picture):
 	if url.startswith('plugin://') == True:
 		item.setProperty('IsPlayable', 'true')
 	xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=url, listitem=item)
+	
+def MakeSearchableString(str):
+	str = str.lower()
+	
+	str = str.replace(u'ē', 'e')
+	str = str.replace(u'ŗ', 'r')
+	str = str.replace(u'ū', 'u')
+	str = str.replace(u'ī', 'i')
+	str = str.replace(u'ō', 'o')
+	str = str.replace(u'ā', 'a')
+	str = str.replace(u'š', 's')
+	str = str.replace(u'ģ', 'g')
+	str = str.replace(u'ķ', 'k')
+	str = str.replace(u'ļ', 'l')
+	str = str.replace(u'ž', 'z')
+	str = str.replace(u'č', 'c')
+	str = str.replace(u'ņ', 'n')
+	
+	# print str
+	return str
