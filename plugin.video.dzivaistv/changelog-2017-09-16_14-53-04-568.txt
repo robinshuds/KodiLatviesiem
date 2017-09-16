@@ -1,0 +1,27 @@
+﻿[B]1.2.4[/B]
+- TV Logo, tagad arī parādās ka tiek palaists strīms
+- Pievienoju sarkanu tekstu pie strīmiem kurus zinam ka neiet ārzemēs.
+
+
+[B]1.2.3[/B]
+- Atjaunoju nepieiciešamo moduļu versiju numurus
+
+[B]1.2.2[/B]
+- Atjaunoju nepieiciešamo moduļu versiju numurus
+
+[B]1.2.1[/B]
+- Pielaboju aprakstu
+
+[B]1.2.0[/B]
+- Pievienoju dažus populārzinātniskus kanālus
+
+[B]1.1.0[/B]
+- Pievienots: Kanāls 2, PBMK
+- Pievienota kategorija testa strīmi, eksperimentāliem strīmiem
+- Pievienoti papildus strīmi Tv3, tv6 un lnt
+
+[B]1.0.0[/B]
+- Pirmā versija kodam. Izstrādāta datu struktūra un pievienoti pirmie 5 testa kanāli.
+
+[B]0.0.1[/B]
+- Initial version
