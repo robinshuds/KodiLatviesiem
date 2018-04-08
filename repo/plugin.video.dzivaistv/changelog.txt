@@ -1,4 +1,7 @@
-﻿[B]1.19.0[/B]
+﻿[B]1.20.0[/B]
+- Jauni LV strimi priekš: LTV1, LTV7, TV3, LNT, TV6 un Kanāls2
+
+[B]1.19.0[/B]
 - Pārmainam repo
 
 [B]1.18.0[/B]

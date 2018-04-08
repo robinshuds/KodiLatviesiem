@@ -24,64 +24,82 @@ channelList = {'Latvijas Kanāli': {
 									'channels':	[{'name': 'LTV1',
 												'thumb': '%s/ltv1.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/ltv1/',
-												'sources': [{'name':'LTV1 - Tiešraide 1 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'resolve_ltv1_source1'},
-															{'name':'LTV1 - Tiešraide 2 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://dvb.gpsystems.lv:4242/bynumber/1?by_HasBahCa'},
-															{'name':'LTV1 - Tiešraide 3 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LTV1/playlist.m3u8', 'key': 0},
-															{'name':'LTV1 - Tiešraide 4 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=140.25', 'key': 2},
-															{'name':'LTV1 - Tiešraide 5 ', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-ltv1/index.m3u8'},
-															{'name':'LTV1 - Tiešraide 6 ', 'url': 'http://83.166.48.35:8888/udp/235.35.1.20:1234'}]
+												'sources': [
+															#{'name':'LTV1 - Tiešraide 1 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'resolve_ltv1_source1'},
+															#{'name':'LTV1 - Tiešraide 2 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://dvb.gpsystems.lv:4242/bynumber/1?by_HasBahCa'},
+															#{'name':'LTV1 - Tiešraide 3 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LTV1/playlist.m3u8', 'key': 0},
+															#{'name':'LTV1 - Tiešraide 4 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=140.25', 'key': 2},
+															#{'name':'LTV1 - Tiešraide 5 ', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-ltv1/index.m3u8'},
+															#{'name':'LTV1 - Tiešraide 6 ', 'url': 'http://83.166.48.35:8888/udp/235.35.1.20:1234'}
+															{'name':'LTV1 - Tiešraide 1 ', 'url': 'http://80.70.22.46:80/LTV1&ff/video.m3u8'}
+															]
 												},
 												{'name': 'LTV7',
 												'thumb': '%s/ltv7.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/ltv7/',
-												'sources': [{'name': 'LTV7 - Tiešraide 1 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'resolve_ltv7_source1'},
-															{'name': 'LTV7 - Tiešraide 2 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://dvb.gpsystems.lv:4242/bynumber/3'},
-															{'name': 'LTV7 - Tiešraide 3 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LTV7/playlist.m3u8', 'key': 0},
-															{'name': 'LTV7 - Tiešraide 4 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=168.25', 'key': 2},
-															{'name': 'LTV7 - Tiešraide 5', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-ltv7/index.m3u8'}]
+												'sources': [
+															#{'name': 'LTV7 - Tiešraide 1 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'resolve_ltv7_source1'},
+															#{'name': 'LTV7 - Tiešraide 2 [COLOR yellow][Ārzemes Neies][/COLOR][COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://dvb.gpsystems.lv:4242/bynumber/3'},
+															#{'name': 'LTV7 - Tiešraide 3 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LTV7/playlist.m3u8', 'key': 0},
+															#{'name': 'LTV7 - Tiešraide 4 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=168.25', 'key': 2},
+															#{'name': 'LTV7 - Tiešraide 5', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-ltv7/index.m3u8'}
+															{'name': 'LTV7 - Tiešraide 1', 'url': 'http://80.70.22.46:80/LTV7&ff/video.m3u8'}
+															]
 												},
 												{'name': 'TV3 Latvija',
 												'thumb': '%s/tv3.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/tv3/',
-												'sources': [{'name': 'TV3 Latvija - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_high.stream/chunklist.m3u8'},
-															{'name': 'TV3 Latvija - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_medium.stream/chunklist.m3u8'},
-															{'name': 'TV3 Latvija - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_low.stream/chunklist.m3u8'},
-															{'name': 'TV3 Latvija - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/TV3/playlist.m3u8', 'key': 0},
-															{'name': 'TV3 Latvija - Tiešraide 5 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=161.25', 'key': 2},
-															{'name': 'TV3 Latvija - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-tv3/index.m3u8'},
-															{'name': 'TV3 Latvija - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.22:1234'}]
+												'sources': [
+															#{'name': 'TV3 Latvija - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_high.stream/chunklist.m3u8'},
+															#{'name': 'TV3 Latvija - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_medium.stream/chunklist.m3u8'},
+															#{'name': 'TV3 Latvija - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream2_low.stream/chunklist.m3u8'},
+															#{'name': 'TV3 Latvija - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/TV3/playlist.m3u8', 'key': 0},
+															#{'name': 'TV3 Latvija - Tiešraide 5 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=161.25', 'key': 2},
+															#{'name': 'TV3 Latvija - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-tv3/index.m3u8'},
+															#{'name': 'TV3 Latvija - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.22:1234'}
+															{'name': 'TV3 Latvija - Tiešraide 1', 'url': 'https://mtglv1010.cloudycdn.services/tvplay/_definst_/mtgstream2.smil/chunklist_b1863680.m3u8'}
+															]
 												},
 												{'name': 'LNT',
 												'thumb': '%s/lnt.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/lnt/',
-												'sources': [{'name': 'LNT - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_high.stream/playlist.m3u8'},
-															{'name': 'LNT - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_medium.stream/playlist.m3u8'},
-															{'name': 'LNT - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_low.stream/playlist.m3u8'},
-															{'name': 'LNT - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LNT/playlist.m3u8', 'key': 0},
-															{'name': 'LNT - Tiešraide 5 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=154.25', 'key': 2},
-															{'name': 'LNT - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-lnt/index.m3u8'},
-															{'name': 'LNT - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.19:1234'}]
+												'sources': [
+															#{'name': 'LNT - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_high.stream/playlist.m3u8'},
+															#{'name': 'LNT - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_medium.stream/playlist.m3u8'},
+															#{'name': 'LNT - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream1_low.stream/playlist.m3u8'},
+															#{'name': 'LNT - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/LNT/playlist.m3u8', 'key': 0},
+															#{'name': 'LNT - Tiešraide 5 [COLOR yellow][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=154.25', 'key': 2},
+															#{'name': 'LNT - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-lnt/index.m3u8'},
+															#{'name': 'LNT - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.19:1234'}
+															{'name': 'LNT - Tiešraide 1', 'url': 'https://mtglv1010.cloudycdn.services/tvplay/_definst_/mtgstream1.smil/chunklist_b1863680.m3u8'}
+															]
 												},
 												{'name': 'TV6 Latvija',
 												'thumb': '%s/tv6.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/tv6/',
-												'sources': [{'name': 'TV6 Latvija - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_high.stream/playlist.m3u8'},
-															{'name': 'TV6 Latvija - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_medium.stream/playlist.m3u8'},
-															{'name': 'TV6 Latvija - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_low.stream/playlist.m3u8'},
-															{'name': 'TV6 Latvija - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/TV6/playlist.m3u8', 'key': 0},
-															{'name': 'TV6 Latvija - Tiešraide 5 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=189.25', 'key': 2},
-															{'name': 'TV6 Latvija - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-tv6/index.m3u8'},
-															{'name': 'TV6 Latvija - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.25:1234'}]
+												'sources': [
+															#{'name': 'TV6 Latvija - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_high.stream/playlist.m3u8'},
+															#{'name': 'TV6 Latvija - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_medium.stream/playlist.m3u8'},
+															#{'name': 'TV6 Latvija - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream4_low.stream/playlist.m3u8'},
+															#{'name': 'TV6 Latvija - Tiešraide 4 [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://80.70.22.46/TV6/playlist.m3u8', 'key': 0},
+															#{'name': 'TV6 Latvija - Tiešraide 5 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=189.25', 'key': 2},
+															#{'name': 'TV6 Latvija - Tiešraide 6', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-tv6/index.m3u8'},
+															#{'name': 'TV6 Latvija - Tiešraide 7', 'url': 'http://83.166.48.35:8888/udp/235.35.1.25:1234'}
+															{'name': 'TV6 Latvija - Tiešraide 1', 'url': 'https://mtglv1010.cloudycdn.services/tvplay/_definst_/mtgstream4.smil/chunklist_b1863680.m3u8'}
+															]
 												},
 												{'name': 'Kanāls 2',
 												'thumb': '%s/kanals2.png',
 												'guide': 'https://tv.lattelecom.lv/lv/programma/interaktiva/list/kanals_2/',
-												'sources': [{'name': 'Kanāls 2 - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_high.stream/playlist.m3u8'},
-															{'name': 'Kanāls 2 - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_medium.stream/playlist.m3u8'},
-															{'name': 'Kanāls 2 - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_low.stream/playlist.m3u8'},
-															{'name': 'Kanāls 2 - Tiešraide 4 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=503.25', 'key': 2},
-															{'name': 'Kanāls 2 - Tiešraide 5', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-kanals2/index.m3u8'},
-															{'name': 'Kanāls 2 - Tiešraide 6', 'url': 'http://83.166.48.35:8888/udp/235.35.1.18:1234'}]
+												'sources': [
+															#{'name': 'Kanāls 2 - High [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_high.stream/playlist.m3u8'},
+															#{'name': 'Kanāls 2 - Medium [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_medium.stream/playlist.m3u8'},
+															#{'name': 'Kanāls 2 - Low [COLOR red][Iespējams Bojāts][/COLOR]', 'url': 'http://wpc.11eb4.teliasoneracdn.net/8011EB4/origin1/tvplay/mtgstream3_low.stream/playlist.m3u8'},
+															#{'name': 'Kanāls 2 - Tiešraide 4 [COLOR red][Iet Tikai Ārzemēs][/COLOR]', 'url': 'http://89.201.43.188/play.php?freq=503.25', 'key': 2},
+															#{'name': 'Kanāls 2 - Tiešraide 5', 'url': 'http://ts.liubimoe.tv/0c985436-bd42-4d69-8c43-0f231489370f/lv-kanals2/index.m3u8'},
+															#{'name': 'Kanāls 2 - Tiešraide 6', 'url': 'http://83.166.48.35:8888/udp/235.35.1.18:1234'}
+															{'name': 'Kanāls 2 - Tiešraide 1', 'url': 'https://mtglv1010.cloudycdn.services/tvplay/_definst_/mtgstream3.smil/chunklist_b1863680.m3u8'}
+															]
 												},
 												{'name': 'PBMK',
 												'thumb': '%s/pbmk.png',
